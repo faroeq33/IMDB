@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="assets/main.css">
 </head>
 <body>
-	
+
+<script src="assets/js/vendors/custom-bootstrap.js/index.js"></script>
 </body>
 </html>

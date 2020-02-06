@@ -8,7 +8,8 @@
 
 // 2. Vendors
 @import
-  'vendors/normalize';
+  'vendors/normalize',
+  'vendors/custom-bootstrap/bootstrap';
 
 // 3. Base stuff
 @import
@@ -20,6 +21,7 @@
 // 4. Layout-related sections
 @import
   'layout/header',
+  'layout/navigation',
   'layout/footer';
 
 // 5. Components
