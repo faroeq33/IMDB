@@ -1,0 +1,13 @@
+{
+    "name": "faroeq33/imdb",
+    "description": "Project OOP Movie IMDB",
+    "authors": [
+        {
+            "name": "faroeq-linux-new",
+            "email": "alves_1044@hotmail.com"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "4.4.1"
+    }
+}
