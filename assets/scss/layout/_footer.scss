@@ -2,5 +2,14 @@
 // This file contains all styles related to the footer of the site/application.
 // -----------------------------------------------------------------------------
 .footer{
-	background-color: black;
+	margin-top:3em;
+	&__list{
+		font-style: $font-weight-lighter;
+	}
+
+	&__listitem{
+		text-align: center;
+		color:$light-grey;
+		list-style-type: none;
+	}
 }

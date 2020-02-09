@@ -1,0 +1,19 @@
+.movies{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+
+  .movie {
+    padding: 1em;
+  &__img{
+      width: 100%;
+    }
+    &__title{
+      color: $text-color;
+    }
+    &__rating{
+
+    }
+  }
+}
