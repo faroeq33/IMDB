@@ -26,7 +26,7 @@ $rfs-factor: 10 !default;
   @error "`#{$rfs-factor}` is not a valid  $rfs-factor, it must be greater than 1.";
 }
 
-// Generate enable or disable classes. Possibilities: false, "enable" or "disable"
+// Generate enable or disable src. Possibilities: false, "enable" or "disable"
 $rfs-class: false !default;
 
 // 1 rem = $rfs-rem-value px

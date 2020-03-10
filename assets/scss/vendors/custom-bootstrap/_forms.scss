@@ -135,7 +135,7 @@ select.form-control {
 
 // Form control sizing
 //
-// Build on `.form-control` with modifier classes to decrease or increase the
+// Build on `.form-control` with modifier src to decrease or increase the
 // height and font-size of form controls.
 //
 // Repeated in `_input_group.scss` to avoid Sass extend issues.
@@ -171,7 +171,7 @@ textarea.form-control {
 // Form groups
 //
 // Designed to help with the organization and spacing of vertical forms. For
-// horizontal forms, use the predefined grid classes.
+// horizontal forms, use the predefined grid src.
 
 .form-group {
   margin-bottom: $form-group-margin-bottom;
@@ -247,7 +247,7 @@ textarea.form-control {
 //
 // Provide feedback to users when form field values are valid or invalid. Works
 // primarily for client-side validation via scoped `:invalid` and `:valid`
-// pseudo-classes but also includes `.is-invalid` and `.is-valid` classes for
+// pseudo-src but also includes `.is-invalid` and `.is-valid` src for
 // server side validation.
 
 @each $state, $data in $form-validation-states {

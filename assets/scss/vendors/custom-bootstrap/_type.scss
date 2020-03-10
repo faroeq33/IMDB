@@ -25,7 +25,7 @@ h6, .h6 { @include font-size($h6-font-size); }
   font-weight: $lead-font-weight;
 }
 
-// Type display classes
+// Type display src
 .display-1 {
   @include font-size($display1-size);
   font-weight: $display1-weight;

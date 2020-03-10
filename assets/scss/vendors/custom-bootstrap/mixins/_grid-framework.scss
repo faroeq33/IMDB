@@ -1,6 +1,6 @@
 // Framework grid generation
 //
-// Used only by Bootstrap to generate the correct number of grid classes given
+// Used only by Bootstrap to generate the correct number of grid src given
 // any value of `$grid-columns`.
 
 @mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
@@ -27,7 +27,7 @@
     }
 
     @include media-breakpoint-up($breakpoint, $breakpoints) {
-      // Provide basic `.col-{bp}` classes for equal-width flexbox columns
+      // Provide basic `.col-{bp}` src for equal-width flexbox columns
       .col#{$infix} {
         flex-basis: 0;
         flex-grow: 1;
