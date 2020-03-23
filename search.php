@@ -2,17 +2,28 @@
 require __DIR__.'/vendor/autoload.php';
 require_once 'loader.php';
 
-use IMDB\JsonConversion as JsonConversion;
+use IMDB\Movie as Movie;
+use IMDB\Helper as Helper;
 
-$formfieldTitle = $_POST['title'];
 
-$movie = new JsonConversion($formfieldTitle);
-$movie->replaceChars();
+if ( isset( $_POST['title'] ) )
+{
 
-$movie->setUrl("http://www.omdbapi.com/?apikey=186be766&t=");
+    $formfieldTitle = $_POST['title'];
+    $cleanTitle = Helper::replaceChars($formfieldTitle);
 
-$json = $movie->getInfo();
+    $movie = new Movie($cleanTitle);
+    $movie -> setMovieInfo();
+    $movieInfo = $movie -> getMovieInfo();
 
-$movieInfoInPHP = $movie->conversion($json);
+    echo $twig -> render('search-result.html.twig', $movieInfo);
 
-echo $twig->render('search-result.html.twig', $movieInfoInPHP);
+}
+else
+{
+    $errorMessage = [
+        'errorMessage' => 'Er is iets misgegaan'
+    ];
+
+    echo $twig->render('search-result.html.twig', $errorMessage);
+}

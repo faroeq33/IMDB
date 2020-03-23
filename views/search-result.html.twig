@@ -1,19 +1,42 @@
 {% extends 'core.html.twig' %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-8">
+
+    {% if errorMessage %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="alert alert-danger">
+                        {{ errorMessage }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
                     <div class="movie">
                         <img src="{{ Poster }}" alt="" class="movie__img">
+                    </div>
+                </div>
 
+                <div class="col">
+                    <div class="movie">
                         <p class="movie__title">{{ Title }}</p>
 
                         <p class="movie__rating">{{ Year }}</p>
+
                         <p> {{ Plot }}</p>
                     </div>
+                </div>
+
             </div>
         </div>
-    </div>
+
+    {% endif %}
 
 {% endblock %}

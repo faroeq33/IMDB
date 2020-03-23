@@ -5,32 +5,23 @@ class JsonConversion
 {
 	private $input;
 	private $url;
-	private $info;
+	private $json;
+	private $data;
 
-	public function __construct($input) {
+	public function __construct($url, $input) {
+		$this->url = $url;
 		$this->input = $input;
 	}
 
-	public function setUrl($url){
-		$this->url =  $url;
-	}
+	public function convertToPHParray( ){
+        $jsonFileContents = file_get_contents( $this->url . $this->input );
+        $phpFileContents = json_decode($jsonFileContents, true);// json to php array conversion
 
-	public function replaceChars(){
-		$replaceChars = [' '];
+        $this->json = $jsonFileContents;
+        $this->data = $phpFileContents;
+		}
 
-		$cleanedInput = str_replace($replaceChars,'_', $this->input);
-		$this->input = $cleanedInput;
-	}
-
-	public function getInfo(){
-        $this->info = file_get_contents( $this->url . $this->input );
-
-        return $this->info;
+	public function getData(){
+        return $this->data;
     }
-
-	public function conversion($jsonCode){
-		$this->info  = json_decode($this->info, true);// json to php array conversion
-
-		return $this->info;
-	}
 }
