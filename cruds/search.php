@@ -1,10 +1,9 @@
 <?php
-require __DIR__.'/vendor/autoload.php';
-require_once 'loader.php';
+require __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ .'loader.php';
 
 use IMDB\Movie as Movie;
 use IMDB\Helper as Helper;
-
 
 if ( isset( $_POST['title'] ) )
 {
