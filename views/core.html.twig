@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>OOP Project Movie</title>
-    <link rel="stylesheet" href="assets/css/main.css">
+    {% block style %}
+        <link rel="stylesheet" type="text/css" href="{{ css("main.css") }}">
+    {% endblock %}
 </head>
 <body>
 

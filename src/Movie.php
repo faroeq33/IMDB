@@ -1,8 +1,8 @@
 <?php
-
-
 namespace IMDB;
+
 use IMDB\JsonConversion as JsonConversion;
+use IMDB\MovieHelper as MovieHelper;
 
 class Movie
 {
@@ -11,10 +11,12 @@ class Movie
 
     public function __construct($title)
     {
-        $this->title = $title;
+        $cleanTitle = MovieHelper::replaceSpaces($title);
+        $this->title = $cleanTitle;
     }
 
-    public function setMovieInfo() {
+    public function setMovieInfo()
+    {
         $jsonConversion = new JsonConversion("http://www.omdbapi.com/?apikey=186be766&t=" , $this->title);
         $jsonConversion->convertToPHParray();
         $data = $jsonConversion->getData();
@@ -22,8 +24,9 @@ class Movie
         $this->movieInfo = $data;
     }
 
-    public function getMovieInfo() {
+    public function getMovieInfo()
+    {
         return $this->movieInfo;
-    }
 
+    }
 }

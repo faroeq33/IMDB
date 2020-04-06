@@ -1,22 +1,17 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ .'loader.php';
+require_once "../init.php";
 
 use IMDB\Movie as Movie;
-use IMDB\Helper as Helper;
 
-if ( isset( $_POST['title'] ) )
+if ( isset( $_GET['title'] ) )
 {
+    $formfieldTitle = $_GET['title'];
 
-    $formfieldTitle = $_POST['title'];
-    $cleanTitle = Helper::replaceChars($formfieldTitle);
+    $movie = new Movie($formfieldTitle);
+    $movie->setMovieInfo();
+    $movieInfo = $movie->getMovieInfo();
 
-    $movie = new Movie($cleanTitle);
-    $movie -> setMovieInfo();
-    $movieInfo = $movie -> getMovieInfo();
-
-    echo $twig -> render('search-result.html.twig', $movieInfo);
-
+    echo  $twig->render('search-result.html.twig', $movieInfo);
 }
 else
 {
