@@ -1,5 +1,5 @@
 <?php
-namespace IMDB;
+namespace IMDB\Models;
 
 use IMDB\JsonConversion as JsonConversion;
 use IMDB\MovieHelper as MovieHelper;

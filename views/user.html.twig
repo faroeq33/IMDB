@@ -1,0 +1,42 @@
+{% extends 'core.html.twig' %}
+
+{% block content %}
+
+    {% if errorMessage %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="alert alert-danger">
+                        {{ errorMessage }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if data %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="alert alert-primary">
+                        {% for row in data  %}
+                            {{ row.username }}
+                            {{ successMessage }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="alert alert-danger">
+                        Geen data gevonden!
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

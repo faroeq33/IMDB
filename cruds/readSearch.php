@@ -11,7 +11,7 @@ if ( isset( $_GET['title'] ) )
     $movie->setMovieInfo();
     $movieInfo = $movie->getMovieInfo();
 
-    echo  $twig->render('search-result.html.twig', $movieInfo);
+    echo  $twig->render('searchresult.html.twig', $movieInfo);
 }
 else
 {
@@ -19,5 +19,5 @@ else
         'errorMessage' => 'Er is iets misgegaan'
     ];
 
-    echo $twig->render('search-result.html.twig', $errorMessage);
+    echo $twig->render('searchresult.html.twig', $errorMessage);
 }

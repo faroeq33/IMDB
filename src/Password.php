@@ -14,5 +14,4 @@ class Password
         self::$password = $hashedInput;
         return self::$password;
     }
-
 }
