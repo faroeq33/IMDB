@@ -1,7 +1,7 @@
 <?php
 require_once '../init.php';
 
-use IMDB\Models\User as User;
+use IMDB\Models\Account as User;
 Use IMDB\Password as Password;
 use IMDB\Dump as Dump;
 
@@ -9,7 +9,7 @@ if ( isset($_POST['user']) )
 {
     $formField = $_POST['user'];//fetching all the fields instead of foreaching each value
 
-    $user = new User(
+    $user = new Account(
         $formField['username'],
         $formField['password']
     );
