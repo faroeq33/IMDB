@@ -14,15 +14,13 @@
         </div>
     {% endif %}
 
-    {% if data %}
+    {% if userName %}
         <div class="container">
             <div class="row">
                 <div class="col">
                     <div class="alert alert-primary">
-                        {% for row in data  %}
-                            {{ row.username }}
-                            {{ successMessage }}
-                        {% endfor %}
+                        {{ userName }}
+                        {{ successMessage }}
                     </div>
                 </div>
             </div>
@@ -32,7 +30,7 @@
             <div class="row">
                 <div class="col">
                     <div class="alert alert-danger">
-                        Geen data gevonden!
+                        Geen gebruiker gevonden!
                     </div>
                 </div>
             </div>

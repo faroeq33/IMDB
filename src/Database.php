@@ -5,21 +5,32 @@ namespace IMDB;
 use PDO;
 use PDOException;
 
+/**
+ * Class Database
+ * @package IMDB
+ */
 class Database
 {
-    //eigenschappen
+
     private $dbhost = DB_HOST;
     private $dbuser = DB_USER;
     private $dbpass = DB_PASS;
     private $dbname = DB_NAME;
 
+    /**
+     * @var PDO
+     */
     private $dbh; //PDO connectie (handler)
+
     private $error;
+
     private const BR = "</br>";
 
-    public $stmt;  //query
+  public $stmt;  //query
 
-    //constuctor
+    /**
+     * Database constructor.
+     */
     public function __construct()
     {
         //DSN (DB source name(connection string))
@@ -35,10 +46,18 @@ class Database
 
     }
 
+    /**
+     * @param $query
+     */
     public function query($query){
         $this->stmt = $this->dbh->prepare($query);
     }
 
+    /**
+     * @param $param
+     * @param $value
+     * @param null $type
+     */
     public function bind($param, $value, $type = null){
         if (is_null($type)) {
             switch (true) {
@@ -58,13 +77,19 @@ class Database
         $this->stmt->bindValue($param, $value, $type);
     }
 
+    /**
+     * @return mixed
+     */
     private function executeQuery(){
         return $this->stmt->execute();
     }
 
+    /**
+     * @return mixed
+     */
     public function resultSet(){
         $this->executeQuery();
-        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);//
+        return $this->stmt->fetch(PDO::FETCH_ASSOC);//
     }
 
 }

@@ -1,7 +1,7 @@
 <?php
 require_once "../init.php";
 
-use IMDB\Movie as Movie;
+use IMDB\Models\Movie as Movie;
 
 if ( isset( $_GET['title'] ) )
 {

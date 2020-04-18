@@ -7,7 +7,7 @@ use IMDB\Dump as Dump;
 
 if ( isset($_POST['user']) )
 {
-    $formField = $_POST['user'];
+    $formField = $_POST['user'];// Get all formfields, instead of foreaching each value
 
     $user = new User(
         $formField['username'],
@@ -16,12 +16,12 @@ if ( isset($_POST['user']) )
 
     $user->register();
 
-    $data = $user->findUser( $user->getUsername() );
+    $fetchedUsername = $user->findUser( $user->getUsername() );
 
     $successMessage = 'is succesvol aangemeld!';
 
     echo $twig->render('user.html.twig', [
-        'data' => $data,
+        'userName' => $fetchedUsername['username'],
         'successMessage' => $successMessage
     ]);
 }

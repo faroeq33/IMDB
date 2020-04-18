@@ -14,4 +14,16 @@ class Password
         self::$password = $hashedInput;
         return self::$password;
     }
+
+    public static function verifyHash( $password, $hashCode )
+    {
+        if ( password_verify( $password, $hashCode ) )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

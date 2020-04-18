@@ -6,13 +6,28 @@ use IMDB\MovieHelper as MovieHelper;
 
 class Movie
 {
+    private $imdbId;
     private $title;
     private $movieInfo;
 
-    public function __construct($title)
+
+    public function __construct( $titleOrImdbId )
     {
-        $cleanTitle = MovieHelper::replaceSpaces($title);
-        $this->title = $cleanTitle;
+        if ( MovieHelper::isImdbId( $titleOrImdbId ) ) {
+            $this->imdbId = $titleOrImdbId;
+        }
+        else {
+            $cleanTitle = MovieHelper::replaceSpaces($titleOrImdbId);
+            $this->title = $cleanTitle;
+        }
+    }
+
+    /**
+     * @param mixed $imdbId
+     */
+    public function setImdbId($imdbId): void
+    {
+        $this -> imdbId = $imdbId;
     }
 
     public function setMovieInfo()
