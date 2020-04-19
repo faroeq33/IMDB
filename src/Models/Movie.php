@@ -1,47 +1,84 @@
 <?php
 namespace IMDB\Models;
 
+use IMDB\Dump;
 use IMDB\JsonConversion as JsonConversion;
 use IMDB\MovieHelper as MovieHelper;
+use IMDB\Models\Movie as Mov;
 
+/**
+ * Class Movie
+ * @package IMDB\Models
+ */
 class Movie
 {
-    private $imdbId;
-    private $title;
-    private $movieInfo;
+    public $Title;
+    public $Year;
+    public $Rated;
+    public $Released;
+    public $Runtime;
+    public $Genre;
+    public $Director;
+    public $Writer;
+    public $Actors;
+    public $Plot;
+    public $Language;
+    public $Country;
+    public $Awards;
+    public $Poster;
+    public $Ratings;
+    public $Metascore;
+    public $imdbRating;
+    public $imdbVotes;
+    public $imdbID;
+    public $Type;
+    public $DVD;
+    public $BoxOffice;
+    public $Production;
+    public $Website;
 
-
-    public function __construct( $titleOrImdbId )
+    /**
+     * Movie constructor.
+     * @param $titleOrImdbId
+     */
+    public function __construct($titleOrImdbId )
     {
         if ( MovieHelper::isImdbId( $titleOrImdbId ) ) {
-            $this->imdbId = $titleOrImdbId;
+            $this->imdbID = $titleOrImdbId;
         }
         else {
             $cleanTitle = MovieHelper::replaceSpaces($titleOrImdbId);
-            $this->title = $cleanTitle;
+            $this->Title = $cleanTitle;
         }
     }
 
+
     /**
-     * @param mixed $imdbId
+     * @return mixed
      */
-    public function setImdbId($imdbId): void
+    public function setMovieProperties()
     {
-        $this -> imdbId = $imdbId;
-    }
-
-    public function setMovieInfo()
-    {
-        $jsonConversion = new JsonConversion("http://www.omdbapi.com/?apikey=186be766&t=" , $this->title);
+        $jsonConversion = new JsonConversion("http://www.omdbapi.com/?apikey=186be766&t=" , $this->Title);
         $jsonConversion->convertToPHParray();
-        $data = $jsonConversion->getData();
+        $moviedata = $jsonConversion->getData();
 
-        $this->movieInfo = $data;
-    }
+        $classVarNames =  array_keys(
+            get_class_vars(
+                get_class( $this )
+            )
+        );
 
-    public function getMovieInfo()
-    {
-        return $this->movieInfo;
+        $AmountOfClassVarNames = count($classVarNames);
 
+        foreach ($moviedata as $movieproperty => $value)
+        {
+            for ($i=0; $i < $AmountOfClassVarNames ; $i++)
+            {
+                if ($movieproperty == $classVarNames[$i])
+                {
+                    $this->{$classVarNames[$i]} = $value;
+                }
+            }
+        }
     }
 }

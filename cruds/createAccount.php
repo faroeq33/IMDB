@@ -1,26 +1,26 @@
 <?php
 require_once '../init.php';
 
-use IMDB\Models\User as User;
+use IMDB\Models\Account as Account;
 Use IMDB\Password as Password;
 use IMDB\Dump as Dump;
 
-if ( isset($_POST['user']) )
+if ( isset($_POST['account']) )
 {
-    $formField = $_POST['user'];// Get all formfields, instead of foreaching each value
+    $formField = $_POST['account'];// Get all formfields, instead of foreaching each value
 
-    $user = new User(
-        $formField['username'],
+    $account = new Account(
+        $formField['accountname'],
         $formField['password']
     );
 
-    $user->register();
+    $account->register();
 
-    $fetchedUsername = $user->findUser( $user->getUsername() );
+    $fetchedUsername = $account->findUser( $account->getUsername() );
 
     $successMessage = 'is succesvol aangemeld!';
 
-    echo $twig->render('user.html.twig', [
+    echo $twig->render('account.html.twig', [
         'userName' => $fetchedUsername['username'],
         'successMessage' => $successMessage
     ]);
@@ -31,5 +31,5 @@ else
         'errorMessage' => 'Vul alle velden in!'
     ];
 
-    echo $twig->render('user.html.twig', $errorMessage);
+    echo $twig->render('account.html.twig', $errorMessage);
 }

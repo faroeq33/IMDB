@@ -2,6 +2,7 @@
 require_once "../init.php";
 
 use IMDB\Models\Movie as Movie;
+use IMDB\Models\Watchlist as Watchlist;
 
 if ( isset( $_GET['imdbId'] ) )
 {

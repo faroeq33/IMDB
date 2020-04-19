@@ -26,7 +26,7 @@ if ( isset($_POST['user']) )
 
         $successMessage = 'is succesvol aangemeld!';
 
-        echo $twig->render('user.html.twig', [
+        echo $twig->render('account.html.twig', [
             'userName' => $user->getUsername(),
             'successMessage' => $successMessage
         ]);
@@ -37,7 +37,7 @@ if ( isset($_POST['user']) )
             'errorMessage' => 'Wachtwoord klopt niet'
         ];
 
-        echo $twig->render('user.html.twig', $errorMessage);
+        echo $twig->render('account.html.twig', $errorMessage);
     }
 
 
@@ -53,5 +53,5 @@ else
         'errorMessage' => 'Vul alle velden in!'
     ];
 
-    echo $twig->render('user.html.twig', $errorMessage);
+    echo $twig->render('account.html.twig', $errorMessage);
 }

@@ -8,10 +8,10 @@ use IMDB\Dump as Dump;
 use PDOException;
 
 /**
- * Class User
+ * Class Account
  * @package IMDB\Models
  */
-class User
+class Account
 {
     private $username;
     private $password;
@@ -19,7 +19,7 @@ class User
     private $error;
 
     /**
-     * User constructor.
+     * Account constructor.
      * @param $username
      * @param $password
      */
@@ -38,7 +38,7 @@ class User
         try {
             $database = new Database();
 
-            $sql = "INSERT INTO `User` ( username, password ) VALUES ( :username, :password )";
+            $sql = "INSERT INTO `Account` ( username, password ) VALUES ( :username, :password )";
             $database->query($sql);
             $database->bind(":username", $this->username);
             $database->bind(":password", $this->password);
@@ -60,7 +60,7 @@ class User
         try
         {
             $database = new Database();
-            $sql = "SELECT username FROM `User` WHERE (username = :username)";
+            $sql = "SELECT username FROM `Account` WHERE (username = :username)";
             $database->query($sql);
             $database->bind(":username", $username);
             $usernameArray = $database->resultSet();
@@ -100,7 +100,7 @@ class User
         try
         {
             $database = new Database();
-            $sql = "SELECT password FROM `User` WHERE ( username = :username )";
+            $sql = "SELECT password FROM `Account` WHERE ( username = :username )";
             $database->query($sql);
             $database->bind(":username", $username);
             $hashedPasssword = $database->resultSet();
