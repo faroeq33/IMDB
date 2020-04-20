@@ -3,19 +3,28 @@ require_once "../init.php";
 
 use IMDB\Models\Movie as Movie;
 use IMDB\Models\Watchlist as Watchlist;
+use IMDB\Dump as Dump;
 
-if ( isset( $_GET['imdbId'] ) )
+if ( isset( $_GET['imdbID'] ) )
 {
-    $formfieldTitle = $_GET['imdbId'];
+    $formfieldTitle = $_GET['imdbID'];
 
     $movie = new Movie($formfieldTitle);
 
-    //update movie op algezien zetten
-    $movie->setMovieInfo();
-    $movieInfo = $movie->getMovieInfo();
+    $movie->setMovieProperties();
 
-    //nieuwe twig maken met wensenlijst
-    echo  $twig->render('watchlist.html.twig', $movieInfo);
+
+    //TODO: maak een methode dat accountid ophaalt uit de database testen
+    //TODO: maak een methode aan dat je accountid kunt weergeven
+    //vang user id op om mee te geven in de add to watch list
+
+    Dump::varDump($_SESSION, true);
+    $movie->addMovie();
+    $movie->addToWatchlist( $_SESSION['username']);
+
+    //maak een showWatchList();
+
+    echo  $twig->render('watchlist.html.twig');
 }
 else
 {

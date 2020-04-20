@@ -27,12 +27,15 @@
 
                 <div class="col">
                     <div class="movie">
-                        <p class="movie__title">{{ Title }}</p>
+                        <p class="movie__title h2">{{ Title }}</p>
 
                         <p class="movie__rating">{{ Year }}</p>
 
                         <p> {{ Plot }}</p>
-                        <a href="{{ root }}cruds/createWatchlist.php" class="btn btn-primary">Toevoegen aan <i>Mijn Films</i></a>
+                        <form action="{{ root }}cruds/createWatchlist.php" method="get">
+                            <input type="hidden" name="imdbID" value="{{ imdbID }}">
+                            <input type="submit" class="btn btn-primary" value="toevoegen aan 'Mijn Films'">
+                        </form>
                     </div>
                 </div>
 

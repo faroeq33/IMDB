@@ -13,7 +13,8 @@ use PDOException;
  */
 class Account
 {
-    private $username;
+    public $accountid;
+    public $username;
     private $password;
 
     private $error;
@@ -26,6 +27,7 @@ class Account
     public function __construct($username, $password)
     {
         $hashedPassword = Password ::hash($password);
+
         $this->username = $username;
         $this->password = $hashedPassword;
     }
@@ -38,7 +40,7 @@ class Account
         try {
             $database = new Database();
 
-            $sql = "INSERT INTO `Account` ( username, password ) VALUES ( :username, :password )";
+            $sql = "INSERT INTO account ( username, password ) VALUES ( :username, :password )";
             $database->query($sql);
             $database->bind(":username", $this->username);
             $database->bind(":password", $this->password);
@@ -51,16 +53,44 @@ class Account
         }
     }
 
+
+    public function setAccountId()
+    {
+        try {
+            $database = new Database();
+
+            $sql = "SELECT id_account FROM account WHERE username = :username";
+            $database->query($sql);
+            $database->bind(":username", $this->username);
+            $fetchedAccountId = $database->resultSet();
+
+            $this->accountid = $fetchedAccountId;
+
+        } catch (PDOException $e) {
+
+            echo 'Connection failed: ' . $e->getMessage();
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAccountid()
+    {
+        return $this -> accountid;
+    }
+
+
     /**
      * @param $username
      * @return \Exception|PDOException
      */
-    public function findUser($username )
+    public function findUser( $username )
     {
         try
         {
             $database = new Database();
-            $sql = "SELECT username FROM `Account` WHERE (username = :username)";
+            $sql = "SELECT username FROM account WHERE (username = :username)";
             $database->query($sql);
             $database->bind(":username", $username);
             $usernameArray = $database->resultSet();
@@ -79,7 +109,7 @@ class Account
      * @param $password
      * @return bool
      */
-    public function verifyUser($username, $password ) {
+    public function verifyUser( $username, $password ) {
         //fetching hashPassword from relevent username$
         $hashedPassword = $this->getHashedPassword( $username );
 
@@ -100,7 +130,7 @@ class Account
         try
         {
             $database = new Database();
-            $sql = "SELECT password FROM `Account` WHERE ( username = :username )";
+            $sql = "SELECT password FROM account WHERE ( username = :username )";
             $database->query($sql);
             $database->bind(":username", $username);
             $hashedPasssword = $database->resultSet();
@@ -120,13 +150,5 @@ class Account
     public function getUsername()
     {
         return $this->username;
-    }
-
-    /**
-     * @return false|string|null
-     */
-    public function getPassword()
-    {
-        return $this -> password;
     }
 }

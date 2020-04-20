@@ -2,7 +2,6 @@
 require_once '../init.php';
 
 use IMDB\Models\Account as Account;
-Use IMDB\Password as Password;
 use IMDB\Dump as Dump;
 
 if ( isset($_POST['account']) )
@@ -10,11 +9,11 @@ if ( isset($_POST['account']) )
     $formField = $_POST['account'];// Get all formfields, instead of foreaching each value
 
     $account = new Account(
-        $formField['accountname'],
+        $formField['username'],
         $formField['password']
     );
-
     $account->register();
+    $account->setAccountId();
 
     $fetchedUsername = $account->findUser( $account->getUsername() );
 

@@ -1,13 +1,13 @@
 <?php
 require_once '../init.php';
 
-use IMDB\Models\Account as User;
+use IMDB\Models\Account as Account;
 Use IMDB\Password as Password;
 use IMDB\Dump as Dump;
 
-if ( isset($_POST['user']) )
+if ( isset($_POST['account']) )
 {
-    $formField = $_POST['user'];//fetching all the fields instead of foreaching each value
+    $formField = $_POST['account'];//fetching all the fields instead of foreaching each value
 
     $user = new Account(
         $formField['username'],
@@ -21,15 +21,12 @@ if ( isset($_POST['user']) )
 
     if ( $UserVerified )
     {
-        $_SESSION['loggedIn'] = true;
-        $_SESSION['userName'] = $user->getUsername();
+        $_SESSION['loggedIn'] = 1;
+        $_SESSION['username'] = $user->getUsername();
 
-        $successMessage = 'is succesvol aangemeld!';
+        $successMessage = 'is ingelogd!';
 
-        echo $twig->render('account.html.twig', [
-            'userName' => $user->getUsername(),
-            'successMessage' => $successMessage
-        ]);
+        echo $twig->render('core.html.twig');
     }
     else
     {
@@ -39,12 +36,6 @@ if ( isset($_POST['user']) )
 
         echo $twig->render('account.html.twig', $errorMessage);
     }
-
-
-
-
-
-
 
 }
 else

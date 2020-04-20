@@ -28,3 +28,4 @@ $twig->addFunction($imgPathFunction);
 //globals
 CONST ROOT = "http://localhost/IMDB/";
 $twig->addGlobal('root', ROOT);
+$twig->addGlobal('session', $_SESSION['initial'] = "defaultvalue");

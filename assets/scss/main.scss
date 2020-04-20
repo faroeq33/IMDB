@@ -9,7 +9,8 @@
 // 2. Vendors
 @import
 'vendors/normalize',
-'vendors/custom-bootstrap/bootstrap';
+'vendors/custom-bootstrap/bootstrap',
+'vendors/custom-bootstrap/bootstrap-grid';
 
 // 3. Base stuff
 @import
@@ -36,3 +37,4 @@
 // 7. Themes
 @import
 'themes/default';
+
