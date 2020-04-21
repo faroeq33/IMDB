@@ -39,7 +39,6 @@ class Movie
     public $Production;
     public $Website;
 
-    private $isWatched;
     private $searchParam;
     private $error;
 
@@ -52,11 +51,13 @@ class Movie
         if ( MovieHelper::isImdbId( $titleOrImdbId ) )
         {
             $this->imdbID = $titleOrImdbId;
+            $this->setMovieProperties();
         }
         else
         {
             $cleanTitle     = MovieHelper::replaceSpaces( $titleOrImdbId );
             $this->Title    = $cleanTitle;
+            $this->setMovieProperties();
         }
     }
 
@@ -64,7 +65,7 @@ class Movie
     /**
      * @return mixed
      */
-    public function setMovieProperties()
+    private function setMovieProperties()
     {
         $jsonUrl = "http://www.omdbapi.com/?apikey=186be766";
 
@@ -108,8 +109,7 @@ class Movie
         return $this -> imdbID;
     }
 
-
-    public function addMovie(){
+    public function addMovieToDatabase(){
         try {
             $database = new Database();
 
@@ -125,58 +125,5 @@ class Movie
         }
     }
 
-    /**
-     * @param $username
-     */
-    public function addToWatchlist( $username ){
-        try {
-            $database = new Database();
 
-            $sql = "INSERT INTO watchlist (account_username, movie_imdb_id) VALUES ( :username, :imdb_id);";
-            $database->query($sql);
-            $database->bind(":username", $username);
-            $database->bind(":imdb_id", $this->imdbID);
-            $database->resultSet();
-        } catch (PDOException $e) {
-
-            echo "error";
-            echo 'Connection failed: ' . $e->getMessage();
-            echo $this->error;
-        }
-    }
-
-
-    public function showMovies(){
-        try {
-            $database = new Database();
-
-            $sql = "SELECT imdb_id FROM watchlist";
-            $database->query($sql);
-            $database->bind(":imdb_id", $this->imdbID);
-            $database->resultSet();
-        } catch (PDOException $e) {
-
-            echo "error";
-            echo 'Connection failed: ' . $e->getMessage();
-            echo $this->error;
-        }
-    }
-
-    /* TODO: isWatched testen
-    public function isWatched(){
-        try {
-            $database = new Database();
-
-            $sql = "UPDATE film SET ( is_watched = :$isWatched  )  ( :imdb_id )";
-            $database->query($sql);
-            $database->bind(":imdb_id", $this->imdbID);
-            $database->resultSet();
-        } catch (PDOException $e) {
-
-            echo "error";
-            echo 'Connection failed: ' . $e->getMessage();
-            echo $this->error;
-        }
-    }
-    */
 }

@@ -2,35 +2,44 @@
 
 {% block content %}
 
-{% if errorMessage %}
+    {% if errorMessage %}
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="alert alert-danger">
-                {{ errorMessage }}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <span>{{ movieTitle }}{{ errorMessage }}</span>
+
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-{% else %}
+    {% else %}
 
-<div class="container">
-    <div class="row">
+        <div class="container">
+            <div class="row">
+                {% if succesMessage %}
+                    <div class="col">
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            {{ movieTitle }}{{ succesMessage }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                {% endif %}
 
-        {% for movie in watchlist %}
-        <form action="{{ root }}cruds/addWatchlist.php">
-            //pull down menu voor rating maken
-            //checkbox voor algezien maken
-        
-        </form>         
+                {% for movie in watchlist %}
 
-        {% endfor %}
+                {% endfor %}
 
-    </div>
-</div>
+            </div>
+        </div>
 
-{% endif %}
+    {% endif %}
 
 {% endblock %}

@@ -13,7 +13,9 @@ if ( isset($_POST['account']) )
         $formField['password']
     );
     $account->register();
-    $account->setAccountId();
+
+    $_SESSION['loggedIn'] = 1;
+    $_SESSION['username'] = $account->getUsername();
 
     $fetchedUsername = $account->findUser( $account->getUsername() );
 

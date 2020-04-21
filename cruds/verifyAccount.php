@@ -2,30 +2,37 @@
 require_once '../init.php';
 
 use IMDB\Models\Account as Account;
-Use IMDB\Password as Password;
 use IMDB\Dump as Dump;
+use IMDB\Session as Session;
 
 if ( isset($_POST['account']) )
 {
     $formField = $_POST['account'];//fetching all the fields instead of foreaching each value
 
-    $user = new Account(
+    $account = new Account(
         $formField['username'],
         $formField['password']
     );
 
-    $UserVerified = $user->verifyUser(
+    $UserVerified = $account->verifyUser(
         $formField['username'],
         $formField['password']
     );
 
     if ( $UserVerified )
     {
-        $_SESSION['loggedIn'] = 1;
-        $_SESSION['username'] = $user->getUsername();
+        Session::setUsername( $account->getUsername() );
+        Session::logOn();
 
-        $successMessage = 'is ingelogd!';
+//        $session = [
+//            'userName' => Session::getUsername(),
+//            'loggedIn' => Session::getLoginStatus()
+//        ];
 
+            $successMessage = 'is ingelogd!';
+//        [
+//            'session' => $session
+//        ]
         echo $twig->render('core.html.twig');
     }
     else

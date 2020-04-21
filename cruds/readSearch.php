@@ -9,7 +9,6 @@ if ( isset( $_GET['title'] ) )
     $formfieldTitle = $_GET['title'];
 
     $movie = new Movie($formfieldTitle);
-    $movie->setMovieProperties();
 
     $movieInfo = [
         'Title'         => $movie->Title,

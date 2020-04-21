@@ -32,7 +32,7 @@
                         <p class="movie__rating">{{ Year }}</p>
 
                         <p> {{ Plot }}</p>
-                        <form action="{{ root }}cruds/createWatchlist.php" method="get">
+                        <form action="{{ root }}cruds/addToWatchlist.php" method="get">
                             <input type="hidden" name="imdbID" value="{{ imdbID }}">
                             <input type="submit" class="btn btn-primary" value="toevoegen aan 'Mijn Films'">
                         </form>
