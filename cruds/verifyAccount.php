@@ -24,21 +24,16 @@ if ( isset($_POST['account']) )
         Session::setUsername( $account->getUsername() );
         Session::logOn();
 
-//        $session = [
-//            'userName' => Session::getUsername(),
-//            'loggedIn' => Session::getLoginStatus()
-//        ];
+        $successMessage = 'is ingelogd!';
 
-            $successMessage = 'is ingelogd!';
-//        [
-//            'session' => $session
-//        ]
-        echo $twig->render('core.html.twig');
+        echo $twig->render('account.html.twig', [
+            'succesMessage' => $successMessage
+            ]);
     }
     else
     {
         $errorMessage = [
-            'errorMessage' => 'Wachtwoord klopt niet'
+            'errorMessage' => 'Wachtwoord klopt niet!'
         ];
 
         echo $twig->render('account.html.twig', $errorMessage);

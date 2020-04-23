@@ -7,19 +7,20 @@ use IMDB\Session as Session;
 use IMDB\Dump as Dump;
 use IMDB\MovieHelper as MovieHelper;
 
-if ( isset( $_GET['imdbID']) && isset( $_SESSION['username'] ) )
+if ( !is_null( $_GET['imdbID']) && !is_null( $_SESSION['username'] ) )
 {
-    $formfieldTitle = $_GET['imdbID'];
+    $imdbID = $_GET['imdbID'];
     $fromThisUsername = $_SESSION['username'];
 
-    $movie = new Movie($formfieldTitle);
+    $movie = new Movie( $imdbID );
 
     $movie->addMovieToDatabase();
 
 
-    if ( ! MovieHelper::MovieExists( Session::getUsername(), $_GET['imdbID'] ) ) {
-        $watchlist = new Watchlist();
-        $watchlist->addToWatchlist($fromThisUsername, $_GET['imdbID']);
+    if ( ! MovieHelper::MovieExists( $imdbID, $fromThisUsername ) )
+    {
+        $watchlist = new Watchlist( $fromThisUsername );
+        $watchlist->addToWatchlist( $imdbID );
 
         $succesMessage =  ' is toegevoegd aan Mijn Films!';
 
@@ -41,7 +42,7 @@ if ( isset( $_GET['imdbID']) && isset( $_SESSION['username'] ) )
 else
 {
     $errorMessage = [
-        'errorMessage' => 'Geen film gevonden en/of username!'
+        'errorMessage' => 'Geen film en/of username gevonden!'
     ];
 
     // boven

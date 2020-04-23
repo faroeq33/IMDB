@@ -4,6 +4,17 @@ use IMDB\Database as Database;
 
 class MovieHelper
 {
+    public static function urlConfig( $value ){
+        $apiUrl = "http://www.omdbapi.com/?apikey=186be766";
+
+        if ( $value[0] == "t" && $value[1] == "t" ) {
+            $apiUrl = $apiUrl . "&i=";
+            return $apiUrl;
+        } else {
+            $apiUrl = $apiUrl . "&t=";
+            return $apiUrl;
+        }
+    }
     public static function replaceSpaces( $input )
     {
         $replaceChars = [' '];

@@ -14,13 +14,13 @@
         </div>
     {% endif %}
 
-    {% if userName %}
+    {% if session.username %}
         <div class="container">
             <div class="row">
                 <div class="col">
                     <div class="alert alert-primary">
-                        <i><b>{{ userName }}</b></i>
-                        {{ successMessage }}
+                        <i><b>{{ session.username }}</b></i>
+                        {{ succesMessage }}
                     </div>
                 </div>
             </div>

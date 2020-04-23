@@ -33,8 +33,14 @@
                     </div>
                 {% endif %}
 
-                {% for movie in watchlist %}
 
+                {% for movie in watchlist %}
+                    <div class="col-md-4">
+                        <h2> {{ movie.Title }}</h2>
+                        <p>{{ movie.Year }}</p>
+                        <img src="{{ movie.Poster }}" alt="">
+                        <p>{{ movie.Blob }}</p>
+                    </div>
                 {% endfor %}
 
             </div>

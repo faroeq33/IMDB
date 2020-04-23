@@ -39,26 +39,18 @@ class Movie
     public $Production;
     public $Website;
 
-    private $searchParam;
+    private $value;
     private $error;
 
     /**
      * Movie constructor.
-     * @param $titleOrImdbId
+     * @param $value
      */
-    public function __construct( $titleOrImdbId )
+    public function __construct( $value )
     {
-        if ( MovieHelper::isImdbId( $titleOrImdbId ) )
-        {
-            $this->imdbID = $titleOrImdbId;
-            $this->setMovieProperties();
-        }
-        else
-        {
-            $cleanTitle     = MovieHelper::replaceSpaces( $titleOrImdbId );
-            $this->Title    = $cleanTitle;
-            $this->setMovieProperties();
-        }
+        $cleansedValue = MovieHelper::replaceSpaces($value);
+        $this->value = $cleansedValue;
+        $this->setMovieProperties();
     }
 
 
@@ -67,17 +59,9 @@ class Movie
      */
     private function setMovieProperties()
     {
-        $jsonUrl = "http://www.omdbapi.com/?apikey=186be766";
+        $jsonUrl = MovieHelper::urlConfig($this->value);
 
-        if (!is_null($this->Title) ){
-            $this->searchParam = "&t=" . $this->Title;
-        }
-
-        if (!is_null($this->imdbID) ){
-            $this->searchParam = "&i=" . $this->imdbID;
-        }
-
-        $jsonConversion = new JsonConversion($jsonUrl, $this->searchParam);
+        $jsonConversion = new JsonConversion($jsonUrl, $this->value);
         $jsonConversion->convertToPHParray();
         $moviedata = $jsonConversion->getData();
 
