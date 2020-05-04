@@ -16,35 +16,37 @@ if ( !is_null( $_GET['imdbID']) && !is_null( $_SESSION['username'] ) )
 
     $movie->addMovieToDatabase();
 
-
     if ( ! MovieHelper::MovieExists( $imdbID, $fromThisUsername ) )
     {
         $watchlist = new Watchlist( $fromThisUsername );
         $watchlist->addToWatchlist( $imdbID );
 
-        $succesMessage =  ' is toegevoegd aan Mijn Films!';
-
-        echo $twig->render('watchlist.html.twig', [
-            'succesMessage' => $succesMessage,
+        $data = [
+            'pageTitle' => 'Filmtoevoegen',
+            'succesMessage' => ' is toegevoegd aan Mijn Films!',
             'movieTitle' => $movie->Title,
-        ]);
+        ];
+
+        echo $twig->render( 'watchlist.html.twig', $data );
     }
     else
     {
-        $errorMessage =  ' is al toegevoegd!';
+        $data = [
+            'pageTitle' => 'Filmtoevoegen',
+            'errorMessage' => ' is al toegevoegd!',
+            'movieTitle' => $movie->Title
+        ];
 
-        echo $twig->render('watchlist.html.twig', [
-            'errorMessage' => $errorMessage,
-            'movieTitle' => $movie->Title,
-        ]);
+        echo $twig->render('watchlist.html.twig', $data);
     }
 }
 else
 {
-    $errorMessage = [
+    $data = [
+        'pageTitle' => 'Filmtoevoegen',
         'errorMessage' => 'Geen film en/of username gevonden!'
     ];
 
     // boven
-    echo $twig->render('watchlist.html.twig', $errorMessage);//twig template aanmaken
+    echo $twig->render('watchlist.html.twig', $data);//twig template aanmaken
 }

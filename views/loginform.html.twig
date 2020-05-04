@@ -1,17 +1,18 @@
-<div class="row">
-    <div class="col-md-4 offset-8">
-        <aside>
-            <form action="{{ root }}cruds/verifyAccount.php" method="post">
-                <input type="text" placeholder="Username" name="account[username]" required>
-                <input type="password" placeholder="password" name="account[password]" required>
-                <input type="submit" value="Log in">
-            </form>
+{% extends 'core.html.twig' %}
 
-
-
-            <a href="{{ root }}">Terug naar Home</a>
-
-            {#            <a href="{{ root }}">Nog geen account?</a>#}
-        </aside>
+{% block content%}
+    <div class="container">
+        <div class="row">
+            <div class="offset-4 col-md-4">
+                <aside>
+                    <form action="{{ root }}cruds/verifyAccount.php" method="post" class="login">
+                        <input type="text" placeholder="Username" name="account[username]" class="login__field form-control" required>
+                        <input type="password" placeholder="password" name="account[password]" class="login__field form-control" required>
+                        <input type="submit" value="Log in" class="btn btn-warning">
+                        <a href="{{ root }}pages/registrationform" class="btn btn-outline-info float-right">Nog geen account?</a>
+                    </form>
+                </aside>
+            </div>
+        </div>
     </div>
-</div>
+{% endblock %}

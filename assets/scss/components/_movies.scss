@@ -1,16 +1,24 @@
-.movies{
-  color:#f8f8f8;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-}
-
 .movie {
+  width: 100%;
   padding: 1em;
 
   &__img {
     width: 100%;
+    object-fit: cover;
+    box-shadow: 0 10px 64px 0 rgba(0,0,0,0.23);
+    border-radius: $border-radius;
+
+    &--heightlimit{
+      max-height: 400px;
+    }
+
+    &--searchresult{
+      object-fit: cover;
+      box-shadow: 0 10px 64px 0 rgba(0,0,0,.23);
+      border-radius: .15em;
+    }
+
+
   }
 
   &__title {
@@ -19,5 +27,8 @@
 
   &__rating {
 
+  }
+
+  &__paragraph{
   }
 }

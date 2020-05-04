@@ -7,18 +7,16 @@ use IMDB\Session as Session;
 
 if (  isset( $_SESSION['username'] ) )
 {
-    $fromThisUsername = Session::getUsername();  
+    $fromThisUsername = Session::getUsername();
 
     $watchlist = new Watchlist( $fromThisUsername );
 
-    $watchlist = $watchlist->getAllWatchlistMovies();
-
     $data = [
-        'watchlist' => $watchlist,
-        'pageTitle' => 'Mijn films'
+        'watchlist' => $watchlist->getWatchedMovies(),
+        'pageTitle' => 'Bekeken films'
     ];
 
-    echo $twig->render('watchlist.html.twig' , $data);
+    echo $twig->render('watchlist.html.twig', $data);
 }
 else
 {
@@ -27,5 +25,5 @@ else
         'pageTitle' => 'Er ging iets mis'
     ];
 
-    echo $twig->render('watchlist.html.twig', $data);//twig template aanmaken
+    echo $twig->render('watchlist.html.twig', $data);
 }

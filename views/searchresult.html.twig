@@ -2,30 +2,21 @@
 
 {% block content %}
 
-    {% if errorMessage %}
+    {% if Response == 'False' %}
 
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="alert alert-danger">
-                        {{ errorMessage }}
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% include 'error.html.twig' with errorMessage %}
 
     {% else %}
 
         <div class="container">
             <div class="row">
-                <div class="col">
+                <div class="col-md-5">
                     <div class="movie">
-                        {{ movieInfo }}
-                        <img src="{{ Poster }}" alt="" class="movie__img">
+                        <img src="{{ Poster }}" alt="" class="movie__img movie__img--searchresult">
                     </div>
                 </div>
 
-                <div class="col">
+                <div class="col-md-7">
                     <div class="movie">
                         <p class="movie__title h2">{{ Title }}</p>
 
@@ -38,7 +29,6 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
 

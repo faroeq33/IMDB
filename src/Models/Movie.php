@@ -38,6 +38,7 @@ class Movie
     public $BoxOffice;
     public $Production;
     public $Website;
+    public $Response;
 
     private $value;
     private $error;

@@ -2,7 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>OOP Project Movie</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>
+        {% block pageTitle %}
+            {{ pageTitle }}
+        {% endblock %}
+    </title>
+
     {% block style %}
         <link rel="stylesheet" type="text/css" href="{{ css("main.css") }}">
     {% endblock %}
@@ -21,10 +29,10 @@
             {% if session.username %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle usernametag text-italic text-muted" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       <span class="text-muted small">username : </span>{{ session.username }}
+                        <span class="text-muted small">username : </span>{{ session.username }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ root }}pages/logOff.php">uitloggen</a>
+                        <a class="dropdown-item" href="{{ root }}cruds/logOffAccount.php">uitloggen</a>
                     </div>
                 </li>
             {% else %}
@@ -33,9 +41,9 @@
                         Aanmelden
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ root }}pages/loginForm.php">Inloggen</a>
+                        <a class="dropdown-item" href="{{ root }}cruds/showLoginForm.php">Inloggen</a>
 
-                        <a class="dropdown-item" href="{{ root }}pages/registrationForm.php">Registreren</a>
+                        <a class="dropdown-item" href="{{ root }}cruds/showRegistrationForm.php">Registreren</a>
                     </div>
                 </li>
             {% endif %}
@@ -48,16 +56,13 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ root }}cruds/showWatchlist.php">Mijn Films</a>
 
-                    <a class="dropdown-item" href="{{ root }}cruds/showWatchedMovies.php">Bekeken Films</a>
+                    <a class="dropdown-item" href="{{ root }}cruds/showWatchlistToBeWatched.php">Nog te bekijken</a>
 
-                    <a class="dropdown-item" href="{{ root }}cruds/showNotWatchedMovies.php">Nog te bekijken </a>
+                    <a class="dropdown-item" href="{{ root }}cruds/showWatchlistWatched.php">Bekeken Films</a>
                 </div>
             </li>
         </ul>
         {% include 'searchform.html.twig' %}
-
-
-
     </div>
 </nav>
 
@@ -66,6 +71,8 @@
 {% endblock %}
 
 {% include 'scripts.html.twig' %}
+
+{% block customscripts %}{% endblock %}
 
 {% include 'footer.html.twig' %}
 

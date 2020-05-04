@@ -17,34 +17,36 @@ if ( isset($_POST['account']) )
     $UserVerified = $account->verifyUser(
         $formField['username'],
         $formField['password']
-    );
+    );// TODO: hier een static van maken
 
     if ( $UserVerified )
     {
         Session::setUsername( $account->getUsername() );
         Session::logOn();
 
-        $successMessage = 'is ingelogd!';
+        $data = [
+            'succesMessage' => 'is ingelogd!',
+            'pagetitle' => 'Inloggen'
+            ];
 
-        echo $twig->render('account.html.twig', [
-            'succesMessage' => $successMessage
-            ]);
+        echo $twig->render('account.html.twig', $data);
     }
     else
     {
-        $errorMessage = [
+        $data = [
             'errorMessage' => 'Wachtwoord klopt niet!'
         ];
 
-        echo $twig->render('account.html.twig', $errorMessage);
+        echo $twig->render('account.html.twig', $data);
     }
 
 }
 else
 {
-    $errorMessage = [
-        'errorMessage' => 'Vul alle velden in!'
+    $data = [
+        'errorMessage' => 'Vul alle velden in!',
+        'pageTitle' => 'Verify Account'
     ];
 
-    echo $twig->render('account.html.twig', $errorMessage);
+    echo $twig->render('account.html.twig', $data);
 }

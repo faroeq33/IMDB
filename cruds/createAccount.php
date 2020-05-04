@@ -3,6 +3,7 @@ require_once '../init.php';
 
 use IMDB\Models\Account as Account;
 use IMDB\Dump as Dump;
+use IMDB\Session;
 
 if ( isset($_POST['account']) )
 {
@@ -14,23 +15,24 @@ if ( isset($_POST['account']) )
     );
     $account->register();
 
-    $_SESSION['loggedIn'] = 1;
-    $_SESSION['username'] = $account->getUsername();
-
     $fetchedUsername = $account->findUser( $account->getUsername() );
 
-    $successMessage = 'is succesvol aangemeld!';
+    Session::logOn();
+    Session::getUsername();
 
-    echo $twig->render('account.html.twig', [
+    $data = [
         'userName' => $fetchedUsername['username'],
-        'successMessage' => $successMessage
-    ]);
+        'successMessage' => 'is succesvol aangemeld!'
+    ];
+
+    echo $twig->render('account.html.twig', $data);
 }
 else
 {
-    $errorMessage = [
-        'errorMessage' => 'Vul alle velden in!'
+    $data = [
+        'errorMessage' => 'Vul alle velden in!',
+        'pageTitle' => 'Er ging iets mis'
     ];
 
-    echo $twig->render('account.html.twig', $errorMessage);
+    echo $twig->render('account.html.twig', $data);
 }

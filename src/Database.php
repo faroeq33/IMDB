@@ -92,6 +92,9 @@ class Database
         return $this->stmt->fetch(PDO::FETCH_ASSOC);//
     }
 
+    /**
+     * @return mixed
+     */
     public function resultSetAll(){
         $this->executeQuery();
         return $this->stmt->fetchall(PDO::FETCH_ASSOC);//

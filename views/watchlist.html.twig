@@ -1,31 +1,18 @@
 {% extends 'core.html.twig' %}
 
+{% block pageTitle %} {{ pageTitle }} {% endblock %}
+
 {% block content %}
-
     {% if errorMessage %}
-
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        <span>{{ movieTitle }}{{ errorMessage }}</span>
-
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        {% embed 'error.html.twig' %} {% endembed %}
     {% else %}
-
         <div class="container">
             <div class="row">
                 {% if succesMessage %}
-                    <div class="col">
+                    <div class="col-md-12">
                         <div class="alert alert-info alert-dismissible fade show" role="alert">
                             {{ movieTitle }}{{ succesMessage }}
+
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -33,19 +20,47 @@
                     </div>
                 {% endif %}
 
+                {% if watchlist %}
+                    {% for movie in watchlist %}
+                        <div class="col-md-4">
+                            <div class="movie">
 
-                {% for movie in watchlist %}
-                    <div class="col-md-4">
-                        <h2> {{ movie.Title }}</h2>
-                        <p>{{ movie.Year }}</p>
-                        <img src="{{ movie.Poster }}" alt="">
-                        <p>{{ movie.Blob }}</p>
+                                <img class="movie__img movie__img--heightlimit" src="{{ movie.Poster }}" alt="">
+
+                                <h2 class="movie__title d-inline"> {{ movie.Title }}</h2>
+
+                                <p class="movie__paragraph d-inline float-right">{{ movie.Year }}</p>
+
+                                <p class="movie__paragraph">{{ movie.Blob }}</p>
+
+                                {% if movie.is_watched == 1 %}
+                                    {% include 'ratingform.html.twig' with movie %}
+                                {% endif %}
+
+                                {% if movie.is_watched == 0 %}
+                                    <form action="{{ root }}cruds/updateWatchlistToWatched.php" method="get">
+                                        <input type="hidden" name="movie" value="{{ movie.imdbID }}">
+                                        <input class="btn btn-outline-primary w-100" type="submit" value="Voeg toe aan : Bekeken Films">
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col">
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <span>Geen bekeken films!</span>
+
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     </div>
-                {% endfor %}
-
+                {% endif %}
             </div>
         </div>
-
     {% endif %}
+{% endblock %}
 
+{% block customscripts %}
 {% endblock %}

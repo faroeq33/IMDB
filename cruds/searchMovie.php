@@ -10,7 +10,7 @@ if ( isset( $_GET['title'] ) )
 
     $movie = new Movie($formfieldTitle);
 
-    $movieInfo = [
+    $data = [
         'Title'         => $movie->Title,
         'Year'          => $movie->Year,
         'Rated'         => $movie->Rated,
@@ -34,16 +34,18 @@ if ( isset( $_GET['title'] ) )
         'DVD'           => $movie->DVD,
         'BoxOffice'     => $movie->BoxOffice,
         'Production'    => $movie->Production,
-        'Website'       => $movie->Website
+        'Website'       => $movie->Website,
+        'Response'      => $movie->Response
     ];
 
-    echo $twig->render('searchresult.html.twig', $movieInfo);
+    echo $twig->render('searchresult.html.twig', $data);
 }
 else
 {
-    $errorMessage = [
-        'errorMessage' => 'Er is iets misgegaan'
+    $data = [
+        'errorMessage' => 'Er is iets misgegaan',
+        'pageTitle' => 'Zoek film'
     ];
 
-    echo $twig->render('searchresult.html.twig', $errorMessage);
+    echo $twig->render('searchresult.html.twig', $data);
 }

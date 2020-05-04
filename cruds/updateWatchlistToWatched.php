@@ -7,15 +7,19 @@ use IMDB\Session as Session;
 
 if (  isset( $_SESSION['username'] ) )
 {
-    $fromThisUsername = Session::getUsername();  
+    $fromThisUsername = Session::getUsername();
+    $fromThisMovie =  $_GET['movie']; // TODO: nog invullen vanaf de form
 
     $watchlist = new Watchlist( $fromThisUsername );
 
-    $watchlist = $watchlist->getAllWatchlistMovies();
+    $watchlist->updateMovieToWatched( $fromThisMovie );// wijzig deze methode
+
+    $moviesToBeWatched = $watchlist->getMoviesToBeWatched();
 
     $data = [
-        'watchlist' => $watchlist,
-        'pageTitle' => 'Mijn films'
+        'watchlist' => $moviesToBeWatched,
+        'pageTitle' => 'Mijn films',
+        'succesMessage' => 'Film is toegevoegd aan : Mijn Bekeken Films'
     ];
 
     echo $twig->render('watchlist.html.twig' , $data);

@@ -1,4 +1,8 @@
 <?php
 require_once 'init.php';
 
-echo $twig->render('core.html.twig');
+$pagetitle = 'Project OOPMovie';
+
+echo $twig->render('core.html.twig', [
+    'pageTitle' => $pagetitle
+]);

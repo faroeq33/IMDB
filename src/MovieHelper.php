@@ -15,6 +15,7 @@ class MovieHelper
             return $apiUrl;
         }
     }
+
     public static function replaceSpaces( $input )
     {
         $replaceChars = [' '];
@@ -39,7 +40,8 @@ class MovieHelper
      * @return bool
      */
 
-    public static function MovieExists(  $withImdbId, $fromUsername ){
+    public static function MovieExists(  $withImdbId, $fromUsername )
+    {
 
         try {
             $database = new Database();
@@ -62,5 +64,10 @@ class MovieHelper
             echo "error";
             echo 'Connection failed: ' . $e->getMessage();
         }
+    }
+
+    public static function populatieMovies( $withImdbId )
+    {
+
     }
 }

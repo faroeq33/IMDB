@@ -3,15 +3,7 @@
 {% block content %}
 
     {% if errorMessage %}
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="alert alert-danger">
-                        {{ errorMessage }}
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% include 'error.html.twig' with errorMessage %}
     {% endif %}
 
     {% if session.username %}
@@ -26,6 +18,7 @@
             </div>
         </div>
     {% else %}
+{#        // in de controller een case zetten met geen gebruiker gevonden#}
         <div class="container">
             <div class="row">
                 <div class="col">

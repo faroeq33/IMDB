@@ -1,0 +1,7 @@
+.login{
+  padding: $grid-gutter-width;
+  &__field{
+  width: 100%;
+    margin-bottom: $grid-gutter-width/2;
+  }
+}
