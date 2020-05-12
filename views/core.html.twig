@@ -54,7 +54,7 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ root }}cruds/showWatchlist.php">Mijn Films</a>
+{#                    <a class="dropdown-item" href="{{ root }}cruds/showWatchlist.php">Mijn Films</a>#}
 
                     <a class="dropdown-item" href="{{ root }}cruds/showWatchlistToBeWatched.php">Nog te bekijken</a>
 
@@ -66,9 +66,7 @@
     </div>
 </nav>
 
-{% block content %}
-
-{% endblock %}
+{% block content %}{% endblock %}
 
 {% include 'scripts.html.twig' %}
 

@@ -11,15 +11,14 @@ if (  isset( $_POST['rating'] ) )
     $fromThisMovie = $_POST['movie'];
     $fromThisUsername = Session::getUsername();
 
+
     $watchlist = new Watchlist( $fromThisUsername );
 
-
-
-        // ga naar watchlist.php/ model om de methode te schrijven voor wijzigen van rating
+    // ga naar watchlist.php/ model om de methode te schrijven voor wijzigen van rating
     //methode uitvoeren voor het wijzigen van de rating
     $watchlist->updateWatchlistRating($fromThisMovie, $withThisRating);
 
-    Dump::varDump($watchlist, true);
+
 
 //    $data = [
 //        'watchlist' => $watchlist->getWatchedMovies(),

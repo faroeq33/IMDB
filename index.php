@@ -3,6 +3,6 @@ require_once 'init.php';
 
 $pagetitle = 'Project OOPMovie';
 
-echo $twig->render('core.html.twig', [
+echo $twig->render('home.html.twig', [
     'pageTitle' => $pagetitle
 ]);

@@ -73,7 +73,7 @@ class Watchlist
         try {
             $database = new Database();
 
-            $sql = "UPDATE watchlist SET rating =:rating WHERE (account_username = :username) AND (movie_imdb_id = :imdbid)";
+            $sql = "UPDATE watchlist SET rating =:rating WHERE (account_username = :username) AND (movie_imdb_id = :imdbId)";
             $database->query($sql);
             $database->bind(":rating", $withThisRating);
             $database->bind(":username", $this->username);
