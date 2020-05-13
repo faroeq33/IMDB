@@ -44,7 +44,7 @@ if ( isset( $_GET['title'] ) )
 else
 {
     $data = [
-        'errorMessage' => 'Er is iets misgegaan',
+        'errorMessage' => 'Er is iets misgegaan, Geen film gevonden',
         'pageTitle' => 'Zoek film'
     ];
 

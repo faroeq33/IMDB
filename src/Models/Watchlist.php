@@ -25,7 +25,7 @@ class Watchlist
     /**
      * @param $imdbId
      */
-    public function addToWatchlist($imdbId )
+    public function addToWatchlist( $imdbId )
     {
         try {
             $database = new Database();
