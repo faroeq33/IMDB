@@ -25,5 +25,5 @@ else
         'pageTitle' => 'Er ging iets mis'
     ];
 
-    echo $twig->render('watchlist.html.twig', $data);
+    echo $twig->render('loginform.html.twig', $data);
 }

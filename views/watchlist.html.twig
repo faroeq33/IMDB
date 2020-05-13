@@ -24,12 +24,15 @@
                     {% for movie in watchlist %}
                         <div class="col-md-4">
                             <div class="movie">
-
                                 <img class="movie__img movie__img--heightlimit" src="{{ movie.Poster }}" alt="">
 
                                 <h2 class="movie__title d-inline"> {{ movie.Title }}</h2>
 
                                 <p class="movie__paragraph d-inline float-right">{{ movie.Year }}</p>
+
+                                {% if movie.rating %}
+                                    <p class="movie__paragraph d-block text-italic"><i class="fas fa-star"></i> {{ movie.rating }}</p>
+                                {% endif %}
 
                                 <p class="movie__paragraph">{{ movie.Blob }}</p>
 

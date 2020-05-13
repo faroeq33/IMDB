@@ -18,14 +18,12 @@ if (  isset( $_POST['rating'] ) )
     //methode uitvoeren voor het wijzigen van de rating
     $watchlist->updateWatchlistRating($fromThisMovie, $withThisRating);
 
+    $data = [
+        'watchlist' => $watchlist->getWatchedMovies(),
+        'pageTitle' => 'Bekeken films'
+    ];
 
-
-//    $data = [
-//        'watchlist' => $watchlist->getWatchedMovies(),
-//        'pageTitle' => 'Bekeken films'
-//    ];
-
-//    echo $twig->render('watchlist.html.twig', $data);
+    echo $twig->render('watchlist.html.twig', $data);
 }
 else
 {

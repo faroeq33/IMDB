@@ -1,18 +1,18 @@
 {% extends 'core.html.twig' %}
 
 {% block content %}
-    <div class="container">
+    <div class="container mt">
         <div class="row">
-            <div class="col-md-6">
-                <h1 class="h1">Welkom bij: Project OOP movie</h1>
+            <div class="offset-md-2 col-md-5">
+                <h1 class="h1">Welkom bij: Project OOP movie!</h1>
 
-                <p>Dit is een 2e jaars schoolproject waarin ik aantoon dat ik Object Georienteerd kan programmeren. Dit project is geschreven in PHP, HTML en SASS.</p>
+                <p>Dit is een 2e jaars schoolproject waarin ik aantoon dat ik <a href="https://en.wikipedia.org/wiki/Object-oriented_programming">OOP</a>(<span class="text-italic font-weight-bold">Object-oriented programming</span>) kan programmeren. Dit project is geschreven in PHP, HTML en SASS.</p>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-3">
                 {% include 'registrationform.html.twig' %}
 
-                <a href="{{ root }}" class="btn btn-outline-info">Terug naar Home</a>
+                <a href="{{ root }}cruds/showLoginForm.php" class="btn btn-outline-info">Al een account?</a>
             </div>
         </div>
     </div>

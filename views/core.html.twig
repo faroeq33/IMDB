@@ -14,6 +14,9 @@
     {% block style %}
         <link rel="stylesheet" type="text/css" href="{{ css("main.css") }}">
     {% endblock %}
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/solid.css" integrity="sha384-fZFUEa75TqnWs6kJuLABg1hDDArGv1sOKyoqc7RubztZ1lvSU7BS+rc5mwf1Is5a" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/fontawesome.css" integrity="sha384-syoT0d9IcMjfxtHzbJUlNIuL19vD9XQAdOzftC+llPALVSZdxUpVXE0niLOiw/mn" crossorigin="anonymous">
 </head>
 <body>
 
@@ -54,7 +57,7 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-{#                    <a class="dropdown-item" href="{{ root }}cruds/showWatchlist.php">Mijn Films</a>#}
+                    {#                    <a class="dropdown-item" href="{{ root }}cruds/showWatchlist.php">Mijn Films</a>#}
 
                     <a class="dropdown-item" href="{{ root }}cruds/showWatchlistToBeWatched.php">Nog te bekijken</a>
 

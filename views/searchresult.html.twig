@@ -4,19 +4,19 @@
 
     {% if Response == 'False' %}
 
-        {% include 'error.html.twig' with errorMessage %}
+        {% include 'error.html.twig' %}
 
     {% else %}
 
         <div class="container">
             <div class="row">
-                <div class="col-md-5">
+                <div class="offset-md-1 col-md-5">
                     <div class="movie">
-                        <img src="{{ Poster }}" alt="" class="movie__img movie__img--searchresult">
+                        <img src="{{ Poster }}" alt="{{ Title }}" class="movie__img movie__img--searchresult">
                     </div>
                 </div>
 
-                <div class="col-md-7">
+                <div class="col-md-5">
                     <div class="movie">
                         <p class="movie__title h2">{{ Title }}</p>
 

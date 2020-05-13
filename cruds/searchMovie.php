@@ -35,7 +35,8 @@ if ( isset( $_GET['title'] ) )
         'BoxOffice'     => $movie->BoxOffice,
         'Production'    => $movie->Production,
         'Website'       => $movie->Website,
-        'Response'      => $movie->Response
+        'Response'      => $movie->Response,
+        'errorMessage' => 'Er is iets misgegaan'
     ];
 
     echo $twig->render('searchresult.html.twig', $data);

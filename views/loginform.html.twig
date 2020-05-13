@@ -1,6 +1,11 @@
 {% extends 'core.html.twig' %}
 
 {% block content%}
+
+    {% if errorMessage %}
+        {% embed 'error.html.twig' %} {% endembed %}
+    {% endif %}
+
     <div class="container">
         <div class="row">
             <div class="offset-4 col-md-4">
@@ -9,7 +14,7 @@
                         <input type="text" placeholder="Username" name="account[username]" class="login__field form-control" required>
                         <input type="password" placeholder="password" name="account[password]" class="login__field form-control" required>
                         <input type="submit" value="Log in" class="btn btn-warning">
-                        <a href="{{ root }}pages/registrationform" class="btn btn-outline-info float-right">Nog geen account?</a>
+                        <a href="{{ root }}cruds/showRegistrationForm.php" class="btn btn-outline-info float-right">Nog geen account?</a>
                     </form>
                 </aside>
             </div>

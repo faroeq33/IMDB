@@ -1,6 +1,7 @@
 <form action="{{ root }}cruds/updateWatchlistRating.php" method="post">
-    <label for="rating">Choose a rating:</label>
-    <select name="rating" id="rating">
+    <label for="rating"></label>
+    <select name="rating" id="rating" class="btn btn-outline-primary">
+        <option value="" class="value">Kies rating</option>
         <option value="1" class="value">1</option>
         <option value="2" class="value">2</option>
         <option value="3" class="value">3</option>
@@ -13,5 +14,5 @@
         <option value="1]" class="value">10</option>
     </select>
     <input type="hidden" name="movie" value="{{ movie.imdbID }}">
-    <input type="submit" value="wijzig rating">
+    <input type="submit" value="wijzig rating" class="btn btn-primary float-right">
 </form>
