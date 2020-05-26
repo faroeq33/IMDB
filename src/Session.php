@@ -9,7 +9,7 @@ class Session
     /**
      * @param $username
      */
-    public static function setUsername($username ) {
+    public static function setUsername( $username ) {
         $_SESSION['username'] = $username;
     }
 
@@ -30,17 +30,25 @@ class Session
 
     public static function logOn() {
         $_SESSION['loggedIn'] = 1;
+
+        session_write_close();
     }
 
     public static function getLoginStatus() {
         return $_SESSION['loggedIn'];
+
+        session_write_close();
     }
 
     public static function logOff() {
         session_unset();
+
+        session_write_close();
     }
 
     public static function destroy() {
         session_destroy();
+
+session_write_close();
     }
 }

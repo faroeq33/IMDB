@@ -7,7 +7,7 @@ use IMDB\Session as Session;
 use IMDB\Dump as Dump;
 use IMDB\MovieHelper as MovieHelper;
 
-if ( !is_null( $_GET['imdbID']) && !is_null( $_SESSION['username'] ) )
+if ( !is_null( $_GET['imdbID']) && isset( $_SESSION['username'] ) )
 {
     $imdbID = $_GET['imdbID'];
     $fromThisUsername = $_SESSION['username'];
@@ -44,7 +44,7 @@ else
 {
     $data = [
         'pageTitle' => 'Filmtoevoegen',
-        'errorMessage' => 'Geen film en/of username gevonden!'
+        'errorMessage' => 'Geen film en/of username gevonden! Je moet een account hebben om een film toe te voegen.'
     ];
 
     // boven

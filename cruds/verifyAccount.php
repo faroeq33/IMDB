@@ -24,8 +24,9 @@ if ( isset($_POST['account']) )
         Session::setUsername( $account->getUsername() );
         Session::logOn();
 
+
         $data = [
-            'succesMessage' => 'is ingelogd!',
+            'successMessage' => 'is ingelogd!',
             'pagetitle' => 'Inloggen'
             ];
 
