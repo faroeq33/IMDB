@@ -1,3 +1,21 @@
 .fas{
- color: $warning;
+	color: $warning;
+}
+
+.sass-color {
+	color: #c66395;
+}
+
+.php-color {
+	color: #4d5a8f;
+}
+
+.html-color {
+	color: #de4b25;
+}
+
+.fa-custom {
+	&__items{
+		font-size: 3em;
+	}
 }

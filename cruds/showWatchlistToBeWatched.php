@@ -22,7 +22,7 @@ else
 {
     $data = [
         'errorMessage' => 'Je bent nog niet ingelogd!',
-        'pageTitle' => 'Er ging iets mist'
+        'pageTitle' => 'Er ging iets mis!'
     ];
 
     echo $twig->render('loginform.html.twig', $data);

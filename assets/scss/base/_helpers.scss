@@ -58,15 +58,17 @@
   font-style: italic !important;
 }
 
-.mb{
-  margin-bottom: $grid-gutter-width;
+.mb{ margin-bottom: $grid-gutter-width; }
+.mt{ margin-top: $grid-gutter-width; }
+.ml{
+  margin-left: $grid-gutter-width;
+  &--small{
+    margin-left: 20px;
+  }
 }
+.mr{ margin-right: $grid-gutter-width; }
 
-.mt{
-  margin-top: $grid-gutter-width;
-}
-
-.pl{
-  padding-left:$grid-gutter-width;
-}
-
+.pt{ padding-top: $grid-gutter-width; }
+.pr{ padding-right: $grid-gutter-width; }
+.pb{ padding-bottom: $grid-gutter-width; }
+.pl{ padding-left:$grid-gutter-width; }

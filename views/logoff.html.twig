@@ -19,17 +19,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/fontawesome.css" integrity="sha384-syoT0d9IcMjfxtHzbJUlNIuL19vD9XQAdOzftC+llPALVSZdxUpVXE0niLOiw/mn" crossorigin="anonymous">
 </head>
 <body>
-{% if errorMessage %}
-    {% include 'error.html.twig' with errorMessage %}
-{% endif %}
-
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="alert alert-primary">
-                {{ username }} {{ message }}
-            </div>
-            <a href="{{ root }}{{ buttonLink }}" class="ml--small btn btn-primary">{{ buttonMessage }}</a>
+            <p>{{ successMessage }}</p>
+            <a href="{{ root }}index.php" class="btn btn-primary">terug naar home</a>
         </div>
     </div>
 </div>

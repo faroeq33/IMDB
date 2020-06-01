@@ -7,8 +7,8 @@ Session::logOff();
 
 $data = [
     'pageTitle' => 'uitloggen',
-    'successMessage' => 'Je bent nu uitgelogd',
+    'successMessage' => 'Je bent nu uitgelogd...',
 ];
 
-echo $twig->render('core.html.twig', $data);
+echo $twig->render('logoff.html.twig', $data);
 

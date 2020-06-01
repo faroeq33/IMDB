@@ -17,12 +17,11 @@ if ( isset($_POST['account']) )
 
     $fetchedUsername = $account->findUser( $account->getUsername() );
 
-    Session::logOn();
-    Session::getUsername();
-
     $data = [
-        'userName' => $fetchedUsername['username'],
-        'successMessage' => 'is succesvol aangemeld!'
+        'pageTitle' => 'create account',
+        'buttonMessage' => 'Inloggen',
+        'message' => 'Je account is aangemaakt!',
+        'buttonLink' => 'cruds/showLoginForm.php'
     ];
 
     echo $twig->render('account.html.twig', $data);
@@ -34,5 +33,5 @@ else
         'pageTitle' => 'Er ging iets mis'
     ];
 
-    echo $twig->render('account.html.twig', $data);
+    echo $twig->render('error.html.twig', $data);
 }

@@ -30,25 +30,21 @@ class Session
 
     public static function logOn() {
         $_SESSION['loggedIn'] = 1;
+    }
 
+    public static function close() {
         session_write_close();
     }
 
     public static function getLoginStatus() {
         return $_SESSION['loggedIn'];
-
-        session_write_close();
     }
 
     public static function logOff() {
         session_unset();
-
-        session_write_close();
     }
 
     public static function destroy() {
         session_destroy();
-
-session_write_close();
     }
 }

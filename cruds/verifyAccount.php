@@ -17,17 +17,19 @@ if ( isset($_POST['account']) )
     $UserVerified = $account->verifyUser(
         $formField['username'],
         $formField['password']
-    );// TODO: hier een static van maken
+    );
 
     if ( $UserVerified )
     {
         Session::setUsername( $account->getUsername() );
         Session::logOn();
 
-
         $data = [
-            'successMessage' => 'is ingelogd!',
-            'pagetitle' => 'Inloggen'
+            'username' => $account->getUsername(),
+            'message' => 'is ingelogd!',
+            'pagetitle' => 'Inloggen',
+            'buttonMessage' => 'Naar mijn bekeken films',
+            'buttonLink' => 'cruds/showWatchlistToBeWatched.php'
             ];
 
         echo $twig->render('account.html.twig', $data);
@@ -38,7 +40,7 @@ if ( isset($_POST['account']) )
             'errorMessage' => 'Wachtwoord klopt niet!'
         ];
 
-        echo $twig->render('account.html.twig', $data);
+        echo $twig->render('error.html.twig', $data);
     }
 
 }
