@@ -8,6 +8,11 @@ class JsonConversion
     private $json;
     private $data;
 
+    /**
+     * JsonConversion constructor.
+     * @param $url
+     * @param $input
+     */
     public function __construct($url, $input) {
         $this->url = $url;
         $this->input = $input;
@@ -15,10 +20,9 @@ class JsonConversion
 
     public function convertToPHParray( ) {
         $jsonFileContents = file_get_contents( $this->url . $this->input );
-        $phpFileContents = json_decode($jsonFileContents, true);// json to php array conversion
 
         $this->json = $jsonFileContents;
-        $this->data = $phpFileContents;
+        $this->data = json_decode($jsonFileContents, true);//phpFileContents
     }
 
     public function getData() {

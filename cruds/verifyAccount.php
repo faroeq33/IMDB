@@ -29,7 +29,7 @@ if ( isset($_POST['account']) )
             'message' => 'is ingelogd!',
             'pagetitle' => 'Inloggen',
             'buttonMessage' => 'Naar mijn bekeken films',
-            'buttonLink' => 'cruds/showWatchlistToBeWatched.php'
+            'buttonLink' => 'cruds/showWatchlistToWatch.php'
             ];
 
         echo $twig->render('account.html.twig', $data);
@@ -40,7 +40,7 @@ if ( isset($_POST['account']) )
             'errorMessage' => 'Wachtwoord klopt niet!'
         ];
 
-        echo $twig->render('error.html.twig', $data);
+        echo $twig->render('errorpage.html.twig', $data);
     }
 
 }

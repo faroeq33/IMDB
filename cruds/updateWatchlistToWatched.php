@@ -14,7 +14,7 @@ if (  isset( $_SESSION['username'] ) )
 
     $watchlist->updateMovieToWatched( $fromThisMovie );// wijzig deze methode
 
-    $moviesToBeWatched = $watchlist->getMoviesToBeWatched();
+    $moviesToBeWatched = $watchlist->getWatchlistMovies();
 
     $data = [
         'watchlist' => $moviesToBeWatched,

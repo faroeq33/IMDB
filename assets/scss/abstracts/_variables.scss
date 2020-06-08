@@ -2,11 +2,6 @@
 // This file contains all application-wide Sass variables.
 // -----------------------------------------------------------------------------
 
-@font-face {
-  font-family: Ubuntu Regular;
-  src: url("assets/fonts/Ubuntu_Condensed/UbuntuCondensed-Regular.ttf");
-}
-
 
 /// Regular font family
 /// @type List
@@ -15,6 +10,10 @@ $text-font-stack: 'Open Sans', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvet
 /// Code (monospace) font family
 /// @type List
 $code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', monospace !default;
+
+$header-font-stack:'Montserrat Bold', 'Open Sans', 'Helvetica Neue Light';
+
+$footer-font-stack: 'Ubuntu Regular','Arial';
 
 $padding-small: 0.5em;
 $padding-medium: $padding-small * 2;

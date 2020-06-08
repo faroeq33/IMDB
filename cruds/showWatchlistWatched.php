@@ -10,9 +10,11 @@ if (  isset( $_SESSION['username'] ) )
     $fromThisUsername = Session::getUsername();
 
     $watchlist = new Watchlist( $fromThisUsername );
+    $watchlist->setMoviesWatched();
+    $watchlist->setWatchlistMovies();
 
     $data = [
-        'watchlist' => $watchlist->getWatchedMovies(),
+        'watchlist' => $watchlist->getWatchlistMovies(),
         'pageTitle' => 'Bekeken films'
     ];
 

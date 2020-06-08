@@ -12,6 +12,7 @@ if ( !is_null( $_GET['imdbID']) && isset( $_SESSION['username'] ) )
     $imdbID = $_GET['imdbID'];
     $fromThisUsername = $_SESSION['username'];
 
+
     $movie = new Movie( $imdbID );
 
     $movie->addMovieToDatabase();

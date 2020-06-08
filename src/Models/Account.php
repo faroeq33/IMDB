@@ -77,7 +77,7 @@ class Account
      */
     public function getAccountid()
     {
-        return $this -> accountid;
+        return $this->accountid;
     }
 
 
@@ -93,9 +93,8 @@ class Account
             $sql = "SELECT username FROM account WHERE (username = :username)";
             $database->query($sql);
             $database->bind(":username", $username);
-            $usernameArray = $database->resultSet();
 
-            return $usernameArray;
+            return $database->resultSet();
         }
         catch (PDOException $exception)
         {
@@ -113,12 +112,10 @@ class Account
         //fetching hashPassword from relevent username$
         $hashedPassword = $this->getHashedPassword( $username );
 
-        $verifcationResult = Password::verifyHash(
+        return Password::verifyHash(
             $password,
             $hashedPassword['password']
         );
-
-        return $verifcationResult;
     }
 
     /**
@@ -133,9 +130,8 @@ class Account
             $sql = "SELECT password FROM account WHERE ( username = :username )";
             $database->query($sql);
             $database->bind(":username", $username);
-            $hashedPasssword = $database->resultSet();
 
-            return $hashedPasssword;
+            return $database->resultSet();
         }
         catch (PDOException $exception)
         {

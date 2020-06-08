@@ -17,9 +17,11 @@ if (  isset( $_POST['rating'] ) )
     // ga naar watchlist.php/ model om de methode te schrijven voor wijzigen van rating
     //methode uitvoeren voor het wijzigen van de rating
     $watchlist->updateWatchlistRating($fromThisMovie, $withThisRating);
+    $watchlist->setMoviesWatched();
+    $watchlist->setWatchlistMovies();
 
     $data = [
-        'watchlist' => $watchlist->getWatchedMovies(),
+        'watchlist' => $watchlist->getWatchlistMovies(),
         'pageTitle' => 'Bekeken films'
     ];
 

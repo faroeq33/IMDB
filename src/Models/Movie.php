@@ -91,7 +91,7 @@ class Movie
      */
     public function getImdbID()
     {
-        return $this -> imdbID;
+        return $this->imdbID;
     }
 
     public function addMovieToDatabase(){

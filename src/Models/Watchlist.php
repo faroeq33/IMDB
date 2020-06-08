@@ -6,8 +6,11 @@ namespace IMDB\Models;
 use IMDB\Database as Database;
 use IMDB\Models\Movie as Movie;
 use IMDB\Dump as Dump;
-use PDOException;
 
+/**
+ * Class Watchlist
+ * @package IMDB\Models
+ */
 class Watchlist
 {
     private $username;
@@ -27,20 +30,13 @@ class Watchlist
      */
     public function addToWatchlist( $imdbId )
     {
-        try {
-            $database = new Database();
+        $database = new Database();
 
-            $sql = "INSERT INTO watchlist (account_username, movie_imdb_id) VALUES ( :username, :imdb_id);";
-            $database->query($sql);
-            $database->bind(":username", $this->username);
-            $database->bind(":imdb_id", $imdbId);
-            $database->resultSet();
-
-        } catch (PDOException $e) {
-
-            echo "error";
-            echo 'Connection failed: ' . $e->getMessage();
-        }
+        $sql = "INSERT INTO watchlist (account_username, movie_imdb_id) VALUES ( :username, :imdb_id);";
+        $database->query($sql);
+        $database->bind(":username", $this->username);
+        $database->bind(":imdb_id", $imdbId);
+        $database->resultSet();
     }
 
     /**
@@ -48,20 +44,13 @@ class Watchlist
      */
     public function updateMovieToWatched( $imdbId )
     {
-        try {
-            $database = new Database();
+        $database = new Database();
 
-            $sql = "UPDATE watchlist SET is_watched = 1 WHERE movie_imdb_id = :imdbId AND account_username = :username;";
-            $database->query($sql);
-            $database->bind(":imdbId", $imdbId);
-            $database->bind(":username", $this->username);
-            $database->resultSet();
-
-        } catch (PDOException $e) {
-
-            echo "error";
-            echo 'Connection failed: ' . $e->getMessage();
-        }
+        $sql = "UPDATE watchlist SET is_watched = 1 WHERE movie_imdb_id = :imdbId AND account_username = :username;";
+        $database->query($sql);
+        $database->bind(":imdbId", $imdbId);
+        $database->bind(":username", $this->username);
+        $database->resultSet();
     }
 
     /**
@@ -70,74 +59,48 @@ class Watchlist
      */
     public function updateWatchlistRating( $fromThisImdbId, $withThisRating )
     {
-        try {
-            $database = new Database();
+        $database = new Database();
 
-            $sql = "UPDATE watchlist SET rating =:rating WHERE (account_username = :username) AND (movie_imdb_id = :imdbId)";
-            $database->query($sql);
-            $database->bind(":rating", $withThisRating);
-            $database->bind(":username", $this->username);
-            $database->bind(":imdbId", $fromThisImdbId);
-            $database->resultSet();
-
-        } catch (PDOException $e) {
-
-            echo "error";
-            echo 'Connection failed: ' . $e->getMessage();
-        }
+        $sql = "UPDATE watchlist SET rating =:rating WHERE (account_username = :username) AND (movie_imdb_id = :imdbId)";
+        $database->query($sql);
+        $database->bind(":rating", $withThisRating);
+        $database->bind(":username", $this->username);
+        $database->bind(":imdbId", $fromThisImdbId);
+        $database->resultSet();
     }
 
-    private function setAllWatchListMovies()
+    public function setAllWatchListMovies()
     {
-        try {
-            $database = new Database();
+        $database = new Database();
 
-            // TODO: query testen in phpMyAdmin
-            $sql = "SELECT movie_imdb_id, is_watched, rating FROM watchlist WHERE account_username = :username";
-            $database->query($sql);
-            $database->bind(":username", $this->username);
-            $this->watchlistItems = $database->resultSetAll();
-        } catch (PDOException $e) {
-
-            echo "error";
-            echo 'Connection failed: ' . $e->getMessage();
-        }
+        $sql = "SELECT movie_imdb_id, is_watched, rating FROM watchlist WHERE account_username = :username";
+        $database->query($sql);
+        $database->bind(":username", $this->username);
+        $this->watchlistItems = $database->resultSetAll();
     }
 
-    private function setMoviesWatched()
+    public function setMoviesWatched()
     {
-        try {
-            $database = new Database();
+        $database = new Database();
 
-            // TODO: query testen in phpMyAdmin
-            $sql = 'SELECT movie_imdb_id, is_watched, rating FROM watchlist WHERE account_username = :username AND is_watched = "1"';
-            $database->query($sql);
-            $database->bind(":username", $this->username);
-            $this->watchlistItems = $database->resultSetAll();
-        } catch (PDOException $e) {
-
-            echo "error";
-            echo 'Connection failed: ' . $e->getMessage();
-        }
+        $sql = 'SELECT movie_imdb_id, is_watched, rating FROM watchlist WHERE account_username = :username AND is_watched = "1"';
+        $database->query($sql);
+        $database->bind(":username", $this->username);
+        $this->watchlistItems = $database->resultSetAll();
     }
 
-    private function setMoviesToBeWatched(){
-        try {
-            $database = new Database();
+    public function setMoviesToWatch()
+    {
+        $database = new Database();
 
-            // TODO: query testen in phpMyAdmin
-            $sql = "SELECT movie_imdb_id, is_watched, rating FROM watchlist WHERE account_username = :username AND is_watched = 0";
-            $database->query($sql);
-            $database->bind(":username", $this->username);
-            $this->watchlistItems = $database->resultSetAll();
-        } catch (PDOException $e) {
+        $sql = "SELECT movie_imdb_id, is_watched, rating FROM watchlist WHERE account_username = :username AND is_watched = 0";
+        $database->query($sql);
+        $database->bind(":username", $this->username);
+        $this->watchlistItems = $database->resultSetAll();
 
-            echo "error";
-            echo 'Connection failed: ' . $e->getMessage();
-        }
     }
 
-    private function setWatchlistMovies()
+    public function setWatchlistMovies()
     {
         $rawWatchlistItems = $this->watchlistItems;
 
@@ -146,7 +109,7 @@ class Watchlist
         foreach( $rawWatchlistItems as $watchlistMovie ) {
             $newmovie = new Movie($watchlistMovie['movie_imdb_id']);
 
-            $movie = [];//This represents a single movie thats about to be populated
+            $movie = [];//This represents a single movie that is about to be populated
 
             $movie['movie_imdb_id']    = $watchlistMovie['movie_imdb_id'];
             $movie['is_watched']       = $watchlistMovie['is_watched'];
@@ -178,37 +141,20 @@ class Watchlist
 
             $watchlist[] = $movie; //Stores the movie array in the watchlist array
         }
-        $this->watchlistItems = $watchlist;
+        $this->watchlistItems = $watchlist; //Store watchlist in watchlistItems property
     }
 
     /**
      * @return mixed
      */
 
-    public function getAllWatchlistMovies()
-    {
-        $this->setAllWatchListMovies();
-        $this->setWatchlistMovies();
 
+    public function getWatchlistMovies()
+    {
         return $this->watchlistItems;
     }
 
 
-    public function getWatchedMovies()
-    {
-        $this->setMoviesWatched();
-        $this->setWatchlistMovies();
-
-        return $this->watchlistItems;
-    }
-
-    public function getMoviesToBeWatched()
-    {
-        $this->setMoviesToBeWatched();
-        $this->setWatchlistMovies();
-
-        return $this->watchlistItems;
-    }
 
 
 }

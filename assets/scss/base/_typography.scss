@@ -7,5 +7,10 @@ body {
 }
 
 .footer{
-	font-family: Ubuntu;
+	font-family: $footer-font-stack;
+}
+
+.h1{
+	font-family: $header-font-stack;
+	font-size: $h1-font-size;
 }

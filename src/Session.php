@@ -25,7 +25,7 @@ class Session
      */
     public static function start()
     {
-        return session_start();
+        session_start();
     }
 
     public static function logOn() {
