@@ -1,7 +1,7 @@
 <?php
-
 /* loader settings */
-$loader = new \Twig\Loader\FilesystemLoader('views','/opt/lampp/htdocs/IMDB');
+define('ROOTPATH', '/testing/');
+$loader = new \Twig\Loader\FilesystemLoader('../views');
 
 $twig = new \Twig\Environment($loader, [
     'debug' => true
@@ -13,12 +13,12 @@ $twig->addExtension(new \Twig\Extension\DebugExtension());
 
 
 /* functions*/
-$cssPathFunction = new \Twig\TwigFunction('css', function ( $nameStylesheet ) {
+$cssPathFunction = new \Twig\TwigFunction('css', function ($nameStylesheet) {
     return "http://localhost/IMDB/assets/css/" . $nameStylesheet;
 });
 $twig->addFunction($cssPathFunction);
 
-$imgPathFunction = new \Twig\TwigFunction('img', function ( $nameStylesheet ) {
+$imgPathFunction = new \Twig\TwigFunction('img', function ($nameStylesheet) {
     return "http://localhost/IMDB/assets/css/" . $nameStylesheet;
 });
 $twig->addFunction($imgPathFunction);
@@ -26,6 +26,5 @@ $twig->addFunction($imgPathFunction);
 
 
 //globals
-CONST ROOT = "http://localhost/IMDB/";
-$twig->addGlobal('root', ROOT);
+$twig->addGlobal('root', ROOTPATH);
 $twig->addGlobal('session', $_SESSION);
