@@ -8,7 +8,8 @@
     {% else %}
         <div class="container">
             <div class="row">
-                <div class="col"><div class="col"><h1 class="h1 text-center text-uppercase"> {{ pageTitle }}</h1></div></div>
+                <div class="col">
+                <h1 class="h1 text-center text-uppercase"> {{ pageTitle }}</h1></div>
             </div>
             <div class="row">
                 {% if succesMessage %}
@@ -53,15 +54,7 @@
                         </div>
                     {% endfor %}
                 {% else %}
-                    <div class="col">
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <span>Geen bekeken films!</span>
-
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>
+                    <div class="col-12 text-center alert alert-warning">Nog geen films in je lijst, Zoek een film in de navigatiebalk om een film toe te voegen 😁️<div>
                 {% endif %}
             </div>
         </div>

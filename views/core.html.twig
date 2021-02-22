@@ -63,16 +63,11 @@
                 </li>
             {% endif %}
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ root }}cruds/showWatchlist.php">
                     Mijn films
                 </a>
 
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ root }}cruds/showWatchlistToWatch.php">Nog te bekijken</a>
-
-                    <a class="dropdown-item" href="{{ root }}cruds/showWatchlistWatched.php">Bekeken Films</a>
-                </div>
             </li>
         </ul>
         {% include 'searchform.html.twig' %}

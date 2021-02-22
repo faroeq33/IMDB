@@ -7,20 +7,18 @@ use IMDB\Session as Session;
 use IMDB\Dump as Dump;
 use IMDB\MovieHelper as MovieHelper;
 
-if ( !is_null( $_GET['imdbID']) && isset( $_SESSION['username'] ) )
-{
+if (!is_null($_GET['imdbID']) && isset($_SESSION['username'])) {
     $imdbID = $_GET['imdbID'];
     $fromThisUsername = $_SESSION['username'];
 
 
-    $movie = new Movie( $imdbID );
+    $movie = new Movie($imdbID);
 
     $movie->addMovieToDatabase();
 
-    if ( ! MovieHelper::MovieExists( $imdbID, $fromThisUsername ) )
-    {
-        $watchlist = new Watchlist( $fromThisUsername );
-        $watchlist->addToWatchlist( $imdbID );
+    if (!MovieHelper::MovieExists($imdbID, $fromThisUsername)) {
+        $watchlist = new Watchlist($fromThisUsername);
+        $watchlist->addToWatchlist($imdbID);
 
         $data = [
             'pageTitle' => 'Filmtoevoegen',
@@ -28,10 +26,8 @@ if ( !is_null( $_GET['imdbID']) && isset( $_SESSION['username'] ) )
             'movieTitle' => $movie->Title,
         ];
 
-        echo $twig->render( 'watchlist.html.twig', $data );
-    }
-    else
-    {
+        echo $twig->render('watchlist.html.twig', $data);
+    } else {
         $data = [
             'pageTitle' => 'Filmtoevoegen',
             'errorMessage' => ' is al toegevoegd!',
@@ -40,14 +36,12 @@ if ( !is_null( $_GET['imdbID']) && isset( $_SESSION['username'] ) )
 
         echo $twig->render('watchlist.html.twig', $data);
     }
-}
-else
-{
+} else {
     $data = [
         'pageTitle' => 'Filmtoevoegen',
         'errorMessage' => 'Geen film en/of username gevonden! Je moet een account hebben om een film toe te voegen.'
     ];
 
     // boven
-    echo $twig->render('watchlist.html.twig', $data);//twig template aanmaken
+    echo $twig->render('watchlist.html.twig', $data);
 }
