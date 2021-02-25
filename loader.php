@@ -1,6 +1,5 @@
 <?php
 /* loader settings */
-define('ROOTPATH', '/portfolio/projects/oopmovie/');
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 
 $twig = new \Twig\Environment($loader, [
@@ -36,5 +35,4 @@ $twig->addGlobal('rootFolder', WORKING_DIR);
 
 
 //globals
-$twig->addGlobal('root', ROOTPATH);
 $twig->addGlobal('session', $_SESSION);
