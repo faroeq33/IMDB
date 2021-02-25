@@ -14,14 +14,24 @@ $twig->addExtension(new \Twig\Extension\DebugExtension());
 
 /* functions*/
 $cssPathFunction = new \Twig\TwigFunction('css', function ($nameStylesheet) {
-    return "http://localhost/IMDB/assets/css/" . $nameStylesheet;
+    return WORKING_DIR . "assets/css/" . $nameStylesheet;
 });
 $twig->addFunction($cssPathFunction);
 
-$imgPathFunction = new \Twig\TwigFunction('img', function ($nameStylesheet) {
-    return "http://localhost/IMDB/assets/css/" . $nameStylesheet;
+// custom functions
+$pageFunction = new \Twig\TwigFunction('page', function ($page) {
+    return  WORKING_DIR . $page . ".php";
 });
-$twig->addFunction($imgPathFunction);
+
+$imgFunction = new \Twig\TwigFunction('img', function ($fileName) {
+    $imgDir = "assets/img/";
+    return $imgDir . $fileName;
+});
+
+$twig->addFunction($pageFunction);
+$twig->addFunction($imgFunction);
+
+$twig->addGlobal('rootFolder', WORKING_DIR);
 /* functions */
 
 

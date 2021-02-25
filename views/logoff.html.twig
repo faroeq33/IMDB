@@ -1,31 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <title>
-        {% block pageTitle %}
-            {{ pageTitle }}
-        {% endblock %}
+      {% block pageTitle %}
+        {{ pageTitle }}
+      {% endblock %}
     </title>
 
     {% block style %}
-        <link rel="stylesheet" type="text/css" href="{{ css("main.css") }}">
+      <link rel="stylesheet" type="text/css" href="{{ css('main.css') }}" />
     {% endblock %}
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/solid.css" integrity="sha384-fZFUEa75TqnWs6kJuLABg1hDDArGv1sOKyoqc7RubztZ1lvSU7BS+rc5mwf1Is5a" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/fontawesome.css" integrity="sha384-syoT0d9IcMjfxtHzbJUlNIuL19vD9XQAdOzftC+llPALVSZdxUpVXE0niLOiw/mn" crossorigin="anonymous">
-</head>
-<body>
-<div class="container justify-center">
-    <div class="row">
+    <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.0/css/solid.css"
+      integrity="sha384-fZFUEa75TqnWs6kJuLABg1hDDArGv1sOKyoqc7RubztZ1lvSU7BS+rc5mwf1Is5a"
+      crossorigin="anonymous" />
+    <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.0/css/fontawesome.css"
+      integrity="sha384-syoT0d9IcMjfxtHzbJUlNIuL19vD9XQAdOzftC+llPALVSZdxUpVXE0niLOiw/mn"
+      crossorigin="anonymous" />
+  </head>
+  <body>
+    <div class="container justify-center">
+      <div class="row">
         <div class="col p-4">
-            <p>{{ successMessage }}</p>
-            <a href="{{ root }}index.php" class="btn btn-primary">terug naar home</a>
+          <p>
+            {{ successMessage }}
+          </p>
+          <a href="{{ rootFolder }}index.php" class="btn btn-primary">
+            terug naar home
+          </a>
         </div>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 </html>

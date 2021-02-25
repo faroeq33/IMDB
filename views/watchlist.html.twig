@@ -45,7 +45,7 @@
                                 {% endif %}
 
                                 {% if movie.is_watched == 0 %}
-                                    <form action="{{ root }}cruds/updateWatchlistToWatched.php" method="get">
+                                    <form action="{{ rootFolder }}cruds/updateWatchlistToWatched.php" method="get">
                                         <input type="hidden" name="movie" value="{{ movie.imdbID }}">
                                         <input class="btn btn-outline-primary w-100" type="submit" value="Voeg toe aan : Bekeken Films">
                                     </form>

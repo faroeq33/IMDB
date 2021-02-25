@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <title>
-        {% block pageTitle %}
-            {{ pageTitle }}
-        {% endblock %}
+      {% block pageTitle %}
+        {{ pageTitle }}
+      {% endblock %}
     </title>
 
     {% block style %}
-        <link rel="stylesheet" type="text/css" href="{{ css("main.css") }}">
+      <link rel="stylesheet" type="text/css" href="{{ css('main.css') }}" />
     {% endblock %}
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/solid.css" integrity="sha384-fZFUEa75TqnWs6kJuLABg1hDDArGv1sOKyoqc7RubztZ1lvSU7BS+rc5mwf1Is5a" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/fontawesome.css" integrity="sha384-syoT0d9IcMjfxtHzbJUlNIuL19vD9XQAdOzftC+llPALVSZdxUpVXE0niLOiw/mn" crossorigin="anonymous">
-</head>
-<body>
-{% if errorMessage %}
-    {% include 'error.html.twig' with errorMessage %}
-{% endif %}
+    <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.0/css/solid.css"
+      integrity="sha384-fZFUEa75TqnWs6kJuLABg1hDDArGv1sOKyoqc7RubztZ1lvSU7BS+rc5mwf1Is5a"
+      crossorigin="anonymous" />
+    <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.0/css/fontawesome.css"
+      integrity="sha384-syoT0d9IcMjfxtHzbJUlNIuL19vD9XQAdOzftC+llPALVSZdxUpVXE0niLOiw/mn"
+      crossorigin="anonymous" />
+  </head>
+  <body>
+    {% if errorMessage %}
+      {% include 'error.html.twig' with errorMessage %}
+    {% endif %}
 
-<div class="container">
-    <div class="row">
+    <div class="container">
+      <div class="row">
         <div class="col">
-            <div class="alert alert-primary">
-                {{ username }} {{ message }}
-            </div>
-            <a href="{{ root }}{{ buttonLink }}" class="ml--small btn btn-primary">{{ buttonMessage }}</a>
+          <div class="alert alert-primary">
+            {{ username }} {{ message }}
+          </div>
+          <a href="{{ rootFolder }}{{ buttonLink }}"
+            class="ml--small btn btn-primary">
+            {{ buttonMessage }}
+          </a>
         </div>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 </html>

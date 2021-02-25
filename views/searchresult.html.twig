@@ -1,37 +1,42 @@
 {% extends 'core.html.twig' %}
 
 {% block content %}
-
-    {% if Response == 'False' %}
-
-        {% include 'error.html.twig' %}
-
-    {% else %}
-
-        <div class="container">
-            <div class="row">
-                <div class="offset-md-1 col-md-5">
-                    <div class="movie">
-                        <img src="{{ Poster }}" alt="{{ Title }}" class="movie__img movie__img--searchresult">
-                    </div>
-                </div>
-
-                <div class="col-md-5">
-                    <div class="movie">
-                        <p class="movie__title h2">{{ Title }}</p>
-
-                        <p class="movie__rating">{{ Year }}</p>
-
-                        <p> {{ Plot }}</p>
-                        <form action="{{ root }}cruds/addToWatchlist.php" method="get">
-                            <input type="hidden" name="imdbID" value="{{ imdbID }}">
-                            <input type="submit" class="btn btn-primary" value="Toevoegen aan 'Mijn films : Nog te bekijken'">
-                        </form>
-                    </div>
-                </div>
-            </div>
+  {% if Response == 'False' %}
+    {% include 'error.html.twig' %}
+  {% else %}
+    <div class="container">
+      <div class="row">
+        <div class="offset-md-1 col-md-5">
+          <div class="movie">
+            <img src="{{ Poster }}"
+              alt="{{ Title }}"
+              class="movie__img movie__img--searchresult" />
+          </div>
         </div>
 
-    {% endif %}
+        <div class="col-md-5">
+          <div class="movie">
+            <p class="movie__title h2">
+              {{ Title }}
+            </p>
 
+            <p class="movie__rating">
+              {{ Year }}
+            </p>
+
+            <p>
+              {{ Plot }}
+            </p>
+            <form action="{{ rootFolder }}cruds/addToWatchlist.php"
+              method="get">
+              <input type="hidden" name="imdbID" value="{{ imdbID }}" />
+              <input type="submit"
+                class="btn btn-primary"
+                value="Toevoegen aan 'Mijn films : Nog te bekijken'" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 {% endblock %}

@@ -1,86 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <title>
-        {% block pageTitle %}
-            {{ pageTitle }}
-        {% endblock %}
+      {% block pageTitle %}
+        {{ pageTitle }}
+      {% endblock %}
     </title>
 
     {% block style %}
-        <link rel="stylesheet" type="text/css" href="{{ css("main.css") }}">
+      <link rel="stylesheet" type="text/css" href="{{ css('main.css') }}" />
     {% endblock %}
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/solid.css" integrity="sha384-fZFUEa75TqnWs6kJuLABg1hDDArGv1sOKyoqc7RubztZ1lvSU7BS+rc5mwf1Is5a" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/fontawesome.css" integrity="sha384-syoT0d9IcMjfxtHzbJUlNIuL19vD9XQAdOzftC+llPALVSZdxUpVXE0niLOiw/mn" crossorigin="anonymous">
-</head>
-<body>
+    <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+      integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
+      crossorigin="anonymous" />
+    <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.0/css/solid.css"
+      integrity="sha384-fZFUEa75TqnWs6kJuLABg1hDDArGv1sOKyoqc7RubztZ1lvSU7BS+rc5mwf1Is5a"
+      crossorigin="anonymous" />
+    <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.0/css/fontawesome.css"
+      integrity="sha384-syoT0d9IcMjfxtHzbJUlNIuL19vD9XQAdOzftC+llPALVSZdxUpVXE0niLOiw/mn"
+      crossorigin="anonymous" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{{ rootFolder }}">
+        Project <span class="text-uppercase">oop</span> movie
+      </a>
 
-<nav class="navbar navbar-expand-lg  navbar-light bg-light">
-    <a class="navbar-brand" href="{{ root }}">Project <span class="text-uppercase">oop</span> movie</a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-    </button>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            {% if session.username %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle usernametag text-italic text-muted" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="text-muted small">username : </span>{{ session.username }}
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ root }}cruds/logOffAccount.php">uitloggen</a>
-                    </div>
-                </li>
-            {% elseif sessionMirror.username == 1 %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Aanmelden
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ root }}cruds/showLoginForm.php">Inloggen</a>
-
-                        <a class="dropdown-item" href="{{ root }}cruds/showRegistrationForm.php">Registreren</a>
-                    </div>
-                </li>
-            {% else %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Aanmelden
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ root }}cruds/showLoginForm.php">Inloggen</a>
-
-                        <a class="dropdown-item" href="{{ root }}cruds/showRegistrationForm.php">Registreren</a>
-                    </div>
-                </li>
-            {% endif %}
-
-            <li class="nav-item ">
-                <a class="nav-link" href="{{ root }}cruds/showWatchlist.php">
-                    Mijn films
+          {% if session.username %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle usernametag text-italic text-muted"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <span class="text-muted small">username :</span>{{ session.username }}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item"
+                  href="{{ rootFolder }}cruds/logOffAccount.php">
+                  uitloggen
+                </a>
+              </div>
+            </li>
+          {% elseif sessionMirror.username == 1 %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                Aanmelden
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item"
+                  href="{{ rootFolder }}cruds/showLoginForm.php">
+                  Inloggen
                 </a>
 
+                <a class="dropdown-item"
+                  href="{{ rootFolder }}cruds/showRegistrationForm.php">
+                  Registreren
+                </a>
+              </div>
             </li>
+          {% else %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                Aanmelden
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item"
+                  href="{{ rootFolder }}cruds/showLoginForm.php">
+                  Inloggen
+                </a>
+
+                <a class="dropdown-item"
+                  href="{{ rootFolder }}cruds/showRegistrationForm.php">
+                  Registreren
+                </a>
+              </div>
+            </li>
+          {% endif %}
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ rootFolder }}cruds/showWatchlist.php">
+              Mijn films
+            </a>
+          </li>
         </ul>
         {% include 'searchform.html.twig' %}
-    </div>
-</nav>
+      </div>
+    </nav>
 
-{% block content %}{% endblock %}
+    {% block content %}
+    {% endblock %}
 
-{% include 'scripts.html.twig' %}
+    {% include 'scripts.html.twig' %}
 
-{% block customscripts %}{% endblock %}
+    {% block customscripts %}
+    {% endblock %}
 
-{% include 'footer.html.twig' %}
-
-</body>
+    {% include 'footer.html.twig' %}
+  </body>
 </html>
