@@ -23,7 +23,7 @@ $pageFunction = new \Twig\TwigFunction('page', function ($page) {
 });
 
 $imgFunction = new \Twig\TwigFunction('img', function ($fileName) {
-    $imgDir = "assets/img/";
+    $imgDir = "/assets/img/";
     return $imgDir . $fileName;
 });
 
