@@ -2,7 +2,8 @@
   "require": {
     "twig/twig": "^3.0",
     "ext-json": "*",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "illuminate/collections": "^8.40"
   },
   "autoload": {
     "psr-4": {
