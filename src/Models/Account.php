@@ -35,6 +35,10 @@ class Account {
 	 *
 	 */
 	public function register() {
+		if ($this->findUser($this->username)) {
+			return false;
+		}
+
 		try {
 			$database = new Database();
 

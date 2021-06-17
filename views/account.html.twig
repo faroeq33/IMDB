@@ -26,22 +26,24 @@
       crossorigin="anonymous" />
   </head>
   <body>
-    {% if errorMessage %}
-      {% include 'error.html.twig' with errorMessage %}
-    {% endif %}
-
     <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="alert alert-primary">
-            {{ username }} {{ message }}
+      {% if errorMessage %}
+        {% include 'error.html.twig' %}
+      {% endif %}
+
+      {% if username %}
+        <div class="row">
+          <div class="col">
+            <div class="alert alert-primary">
+              {{ username }} {{ message }}
+            </div>
+            <a href="{{ rootFolder }}{{ buttonLink }}"
+              class="ml--small btn btn-primary">
+              {{ buttonMessage }}
+            </a>
           </div>
-          <a href="{{ rootFolder }}{{ buttonLink }}"
-            class="ml--small btn btn-primary">
-            {{ buttonMessage }}
-          </a>
         </div>
-      </div>
+      {% endif %}
     </div>
   </body>
 </html>

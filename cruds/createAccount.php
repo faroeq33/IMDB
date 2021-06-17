@@ -5,33 +5,36 @@ use IMDB\Models\Account as Account;
 use IMDB\Dump as Dump;
 use IMDB\Session;
 
-if ( isset($_POST['account']) )
-{
-    $formField = $_POST['account'];// Get all formfields, instead of foreaching each value
+if (isset($_POST['account'])) {
+	$formField = $_POST['account']; // Get all formfields, instead of foreaching each value
 
-    $account = new Account(
-        $formField['username'],
-        $formField['password']
-    );
-    $account->register();
+	$account = new Account(
+		$formField['username'],
+		$formField['password']
+	);
 
-    $fetchedUsername = $account->findUser( $account->getUsername() );
+	if ($account->register() == false) {
+		$userError = ['errorMessage' => 'Deze gebruiker bestaal al.'];
+		echo $twig->render('account.html.twig', $userError);
+	}
 
-    $data = [
-        'pageTitle' => 'create account',
-        'buttonMessage' => 'Inloggen',
-        'message' => 'Je account is aangemaakt!',
-        'buttonLink' => 'cruds/showLoginForm.php'
-    ];
+	if ($account->register()) {
+		$fetchedUsername = $account->findUser($account->getUsername());
 
-    echo $twig->render('account.html.twig', $data);
-}
-else
-{
-    $data = [
-        'errorMessage' => 'Vul alle velden in!',
-        'pageTitle' => 'Er ging iets mis'
-    ];
+		$data = [
+			'pageTitle' => 'create account',
+			'buttonMessage' => 'Inloggen',
+			'message' => 'Je account is aangemaakt!',
+			'buttonLink' => 'cruds/showLoginForm.php'
+		];
 
-    echo $twig->render('error.html.twig', $data);
+		echo $twig->render('account.html.twig', $data);
+	}
+} else {
+	$errorData = [
+		'errorMessage' => 'Vul alle velden in!',
+		'pageTitle' => 'Er ging iets mis'
+	];
+
+	echo $twig->render('error.html.twig', $errorData);
 }
